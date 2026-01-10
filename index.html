@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>General Epistles + Revelation | Interactive (EN/KR)</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#0f1620; --card:#121c28; --muted:#8ea1b5;
+      --text:#eaf2ff; --line:#203043; --accent:#7dd3fc; --accent2:#a7f3d0;
+      --danger:#fb7185; --ok:#86efac;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+    a{color:var(--accent)}
+    .app{display:grid;grid-template-columns:320px 1fr;min-height:100vh}
+    .sidebar{border-right:1px solid var(--line);background:linear-gradient(180deg,var(--panel),#0b1018);padding:18px;position:sticky;top:0;height:100vh;overflow:auto}
+    .brand{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px}
+    .brand h1{font-size:16px;margin:0}
+    .brand .sub{color:var(--muted);font-size:12px;margin-top:2px}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px}
+    .btn{
+      border:1px solid var(--line);background:transparent;color:var(--text);
+      padding:8px 10px;border-radius:10px;cursor:pointer;font-size:13px
+    }
+    .btn:hover{border-color:#335070}
+    .btn.primary{background:rgba(125,211,252,.12);border-color:rgba(125,211,252,.35)}
+    .btn.small{padding:6px 8px;font-size:12px;border-radius:9px}
+    .pill{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:12px}
+    .nav{margin-top:12px}
+    .nav .item{
+      width:100%;text-align:left;border:1px solid transparent;background:transparent;color:var(--text);
+      padding:10px 10px;border-radius:12px;cursor:pointer;display:flex;justify-content:space-between;gap:10px
+    }
+    .nav .item:hover{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.05)}
+    .nav .item.active{background:rgba(125,211,252,.10);border-color:rgba(125,211,252,.25)}
+    .nav .meta{color:var(--muted);font-size:12px}
+    .main{padding:22px 22px 50px;max-width:1100px}
+    .header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+    .title{margin:0;font-size:20px}
+    .desc{margin:6px 0 0;color:var(--muted);max-width:820px;font-size:13px}
+    .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px}
+    @media (max-width:980px){ .app{grid-template-columns:1fr} .sidebar{position:relative;height:auto} .grid{grid-template-columns:1fr} }
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+    .card h3{margin:0 0 8px;font-size:14px}
+    .card p{margin:0;color:var(--text);font-size:13px}
+    details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-top:12px}
+    summary{cursor:pointer;font-weight:650}
+    summary::marker{color:var(--accent)}
+    .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:980px){ .twoCol{grid-template-columns:1fr} }
+    .quizQ{padding:12px;border:1px solid rgba(255,255,255,.06);border-radius:14px;background:rgba(0,0,0,.12);margin-top:10px}
+    .qTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .qNum{color:var(--muted);font-size:12px}
+    .qText{margin:4px 0 10px;font-size:13px}
+    .opts{display:grid;gap:8px}
+    label.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px;cursor:pointer}
+    label.opt:hover{border-color:#2f4660}
+    input[type="radio"]{margin-top:2px}
+    .feedback{margin-top:8px;font-size:12px;color:var(--muted)}
+    .feedback.ok{color:var(--ok)}
+    .feedback.bad{color:var(--danger)}
+    .scoreBar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+    .score{font-weight:700}
+    .foot{margin-top:18px;color:var(--muted);font-size:12px}
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;border:1px solid var(--line);padding:2px 6px;border-radius:8px;background:rgba(255,255,255,.03)}
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div>
+        <h1 id="brandTitle">General Epistles + Revelation</h1>
+        <div class="sub" id="brandSub">Interactive pre-exegesis contexts + quizzes (EN/KR)</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn small primary" id="langEN">EN</button>
+      <button class="btn small" id="langKO">한국어</button>
+      <span class="pill" id="pillMode">Mode: System2</span>
+    </div>
+
+    <div class="nav" id="nav"></div>
+
+    <div class="foot" id="sidebarFoot"></div>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div>
+        <h2 class="title" id="pageTitle"></h2>
+        <p class="desc" id="pageDesc"></p>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="btnCheck"></button>
+        <button class="btn" id="btnReset"></button>
+      </div>
+    </div>
+
+    <section id="content"></section>
+
+    <div class="foot" id="refs"></div>
+  </main>
+</div>
+
+<script>
+/* -----------------------------
+  DATA (EN/KR): Context + 5 MC per document
+-------------------------------- */
+const DATA = [
+  {
+    id:"locate",
+    title_en:"LOCATE + Method (Course Framing)",
+    title_ko:"LOCATE + 방법론 (강의 프레이밍)",
+    desc_en:"Start here: where you stand, what worlds you read, and how time/space/motion shape interpretation before exegesis.",
+    desc_ko:"주해 전에 먼저: 당신의 위치, 읽는 세계, 시간/공간/움직임(크로노토프)이 해석을 어떻게 형성하는지.",
+    contexts:{
+      historical:{
+        en:`You are reading as an <b>emic-person in an emic-space</b>: a biblical scholar–educator working inside an evangelical-yet-plural Christian university with students from diverse denominations and cultures (Korea, China, SE Asia, Americas, Europe).`,
+        ko:`당신은 <b>Emic-person in Emic-space</b>에 서 있습니다: 복음주의적 토대 위에서 다양한 교단/문화권 학생들과 함께 작업하는 성서학자-교육자입니다.`
+      },
+      literary:{
+        en:`You will map the “late NT ecosystem” (Hebrews → Catholic/General Epistles → Revelation) as a canonical cluster that trains communities under <b>external pressure</b> and <b>internal deception</b> toward endurance, discernment, and hope.`,
+        ko:`히브리서–공동서신–계시록을 “후반부 신약 생태계”로 매핑합니다: <b>외부 압박</b>과 <b>내부 기만</b> 속 공동체를 인내·분별·소망으로 훈련시키는 정경적 클러스터입니다.`
+      },
+      cultural:{
+        en:`MDHC / Chronotope lens:
+<ul>
+<li><b>Time</b>: late-1st to early-2nd century horizons + kairotic urgency (“today,” “the Day,” “I am coming soon”).</li>
+<li><b>Space</b>: diaspora identity (“sojourners,” “chosen people”) under social marginalization.</li>
+<li><b>Motion</b>: movement toward God/justice—persecution + deception → resilient witness → Lamb-centered hope.</li>
+</ul>
+Reading arc: <b>Encounter → Return → Sending</b>.`,
+        ko:`MDHC(크로노토프) 렌즈:
+<ul>
+<li><b>시간</b>: 1세기 후반–2세기 초 저술 지평 + “오늘/주의 날/내가 속히 오리라”의 카이로스 긴박성</li>
+<li><b>공간</b>: 디아스포라 정체성(나그네/택하신 백성), 사회적 주변화 속 자기 이해</li>
+<li><b>움직임</b>: 박해+기만 → 인내+분별 → 어린양 중심 소망으로의 지속적 이동</li>
+</ul>
+읽기 호(arc): <b>Encounter → Return → Sending</b>.`
+      }
+    },
+    quiz:[]
+  },
+
+  /* HEBREWS */
+  {
+    id:"hebrews",
+    title_en:"Hebrews",
+    title_ko:"히브리서",
+    desc_en:"Christ’s superiority and the pastoral call to endurance (λόγος τῆς παρακλήσεως, “word of exhortation”).",
+    desc_ko:"그리스도의 우월성과 인내로의 목회적 부르심 (λόγος τῆς παρακλήσεως, “권면의 말씀”).",
+    contexts:{
+      historical:{
+        en:`Authorship is anonymous; date and audience are debated. Many scholars read Hebrews as addressing believers under pressure—fatigue, social shame, and the temptation to drift (cf. 2:1).`,
+        ko:`저자는 익명이며 연대/수신자도 논쟁적입니다. 다수 견해는 박해/피로/수치 경험 속에서 “흘러 떠내려감”(2:1)의 유혹을 받는 신자들에게 보낸 것으로 읽습니다.`
+      },
+      literary:{
+        en:`Not a typical letter: it reads like a homily with an epistolary ending (13:22). Exposition and exhortation alternate; OT catenae drive the argument (Psalm 110; Jeremiah 31, etc.).`,
+        ko:`전형적 서신이 아니라 “설교 원고+편지 결말”(13:22)에 가깝습니다. 논증과 권면이 교차하며 시편 110, 예레미야 31 등 구약 해석(카테나)이 전개를 이끕니다.`
+      },
+      cultural:{
+        en:`Honor–shame dynamics and public reproach appear (10:32–34). Cultic/temple imagery forms the social-theological grammar, yet the aim is pastoral: perseverance as a communal practice (10:24–25).`,
+        ko:`명예-수치 역학과 공개적 모욕(10:32–34)이 배경으로 보입니다. 성전/제사 이미지가 신학 문법을 형성하지만 목표는 목회적입니다: 인내는 공동체적 실천(10:24–25)입니다.`
+      }
+    },
+    quiz:[
+      {
+        q:{en:"Hebrews is best described (literarily) as…", ko:"히브리서의 문학적 성격으로 가장 가까운 것은?"},
+        options:{
+          en:["A standard Pauline letter","A homily/sermon-like exhortation with an epistolary ending","A gospel narrative","A legal code"],
+          ko:["전형적 바울 서신","설교/강론형 권면 + 서신적 결말","복음서 서사","법전(율법집)"]
+        },
+        answer:1,
+        explain:{
+          en:"Hebrews lacks a normal epistolary opening and reads as a ‘word of exhortation’ (13:22) with a letter-style conclusion.",
+          ko:"서두(발신/수신/인사)가 없고 ‘권면의 말씀’(13:22) 성격의 강론이며 결말만 서신 형식입니다."
+        }
+      },
+      {
+        q:{en:"A distinctive christological title emphasized in Hebrews is…", ko:"히브리서가 독특하게 강조하는 그리스도 칭호는?"},
+        options:{en:["Prophet only","High priest (ἀρχιερεύς)","Pharisee","Centurion"], ko:["예언자만","대제사장(ἀρχιερεύς)","바리새인","백부장"]},
+        answer:1,
+        explain:{en:"Hebrews uniquely develops Jesus as the great high priest who sympathizes and grants access (4:14–16).", ko:"히브리서는 예수를 ‘큰 대제사장’으로 전개하며(4:14–16) 담대히 나아가게 합니다."}
+      },
+      {
+        q:{en:"The recurring pastoral concern behind the warning passages is mainly…", ko:"경고 본문들이 겨냥하는 핵심 목회적 문제는?"},
+        options:{en:["Mathematical errors","Drifting/turning back under pressure","Lack of interest in geography","Temple reconstruction planning"], ko:["수학적 오류","압박 속에서의 이탈/후퇴","지리 무관심","성전 재건 계획"]},
+        answer:1,
+        explain:{en:"Warnings address neglect, hardening, apostasy-like drifting in a pressured community (e.g., 2:1; 3:7–4:13; 10:26–31).", ko:"압박받는 공동체의 무관심·완고함·이탈 위험을 경고합니다(예: 2:1; 3:7–4:13; 10:26–31)." }
+      },
+      {
+        q:{en:"In Hebrews 11, the main point is not ‘heroes’ but…", ko:"히브리서 11장의 핵심은 ‘영웅 찬가’라기보다 무엇인가?"},
+        options:{en:["Entertainment stories","Models of endurance toward God’s promise","Roman military tactics","A travel diary"], ko:["오락 이야기","약속을 향해 움직인 인내의 모델","로마 군사 전술","여행기"]},
+        answer:1,
+        explain:{en:"The emphasis is persevering faith that moves toward the promised ‘better homeland’ (11:13–16).", ko:"약속을 향해 이동하는 인내의 믿음(11:13–16)이 중심입니다."}
+      },
+      {
+        q:{en:"A major communal practice tied to perseverance is…", ko:"인내와 직접 연결된 공동체 실천은?"},
+        options:{en:["Avoid gathering","Stirring one another to love and good works (10:24–25)","Silence about faith","Competing for status"], ko:["모이기 중단","서로 돌아보아 사랑과 선행을 격려(10:24–25)","신앙 침묵","지위 경쟁"]},
+        answer:1,
+        explain:{en:"Hebrews frames endurance as shared discipline—encouragement and gathering matter.", ko:"히브리서는 인내를 ‘함께’ 수행하는 훈련으로 봅니다(권면/모임)." }
+      }
+    ]
+  },
+
+  /* JAMES */
+  {
+    id:"james",
+    title_en:"James",
+    title_ko:"야고보서",
+    desc_en:"Wisdom-shaped faith: hearing-and-doing, speech ethics, and economic justice.",
+    desc_ko:"지혜 문학적 신앙: 듣고 행함, 말의 윤리, 경제적 정의.",
+    contexts:{
+      historical:{
+        en:`Often addressed to “the twelve tribes in the Dispersion” (1:1)—a Jewish-Christian horizon. Authorship/date are debated; the letter tackles trials, partiality, and wealthy oppression.`,
+        ko:`“흩어진 열두 지파”(1:1)라는 디아스포라-유대기독교 지평이 강합니다. 저작/연대는 논쟁적이며 시련·편파·부자 억압을 다룹니다.`
+      },
+      literary:{
+        en:`Reads like paraenesis/diatribe: short units, rhetorical questions, a “someone will say…” voice (2:18). It resembles a wisdom collection (Proverbs/Sirach-like).`,
+        ko:`짧은 격언 단락, 수사 질문, “어떤 사람이 말하기를…”(2:18) 같은 디아트리베(대화체 강론) 양식이 두드러집니다. 잠언/집회서 계열의 지혜 전통과 닮았습니다.`
+      },
+      cultural:{
+        en:`Community life in assemblies (2:2), patronage pressures, and class tension appear. “Pure religion” is measured in care for the vulnerable and moral integrity (1:27).`,
+        ko:`회당/모임(2:2), 후원-의존 구조, 계층 긴장이 배경에 있습니다. “정결한 경건”(1:27)은 취약계층 돌봄과 자기 보존으로 측정됩니다.`
+      }
+    },
+    quiz:[
+      {
+        q:{en:"James most closely resembles which genre? ", ko:"야고보서에 가장 가까운 장르는?"},
+        options:{en:["Royal chronicle","Wisdom/paraenetic discourse with diatribe elements","Apocalyptic vision report","Genealogy list"], ko:["왕실 연대기","지혜/권면 담화(디아트리베 요소)","묵시 환상 보고","족보 목록"]},
+        answer:1,
+        explain:{en:"Its style is proverb-like and diatribe-like: short exhortations, rhetorical dialogue, wisdom themes.", ko:"짧은 권면 단락과 대화체 논박, 지혜 주제들이 결합된 양식입니다."}
+      },
+      {
+        q:{en:"James 1:22 emphasizes…", ko:"약 1:22의 핵심 강조는?"},
+        options:{en:["Only hearing the word","Being doers, not hearers only","Avoiding all speech","Political withdrawal"], ko:["말씀 듣기만","듣는 자가 아니라 행하는 자","말을 완전히 금함","정치적 도피"]},
+        answer:1,
+        explain:{en:"The text critiques self-deception: hearing without practice.", ko:"듣기만 하고 행하지 않는 자기기만을 비판합니다."}
+      },
+      {
+        q:{en:"In James 2, “faith without works is…”", ko:"약 2장에서 “행함 없는 믿음”은?"},
+        options:{en:["Optional","Dead","A higher spirituality","A private opinion"], ko:["선택 사항","죽은 것","더 높은 영성","개인 의견"]},
+        answer:1,
+        explain:{en:"James argues that genuine faith becomes visible in embodied obedience and mercy.", ko:"참 믿음은 구체적 순종과 긍휼로 드러난다고 주장합니다."}
+      },
+      {
+        q:{en:"A major social sin condemned in James 5:1–6 is…", ko:"약 5:1–6이 고발하는 주요 사회적 죄는?"},
+        options:{en:["Astronomy","Withholding wages / economic exploitation","Vegetarianism","Learning Greek"], ko:["천문학","품삯 억류/경제적 착취","채식","헬라어 학습"]},
+        answer:1,
+        explain:{en:"The oracle targets wealthy oppression and injustice against laborers.", ko:"부자의 착취와 품꾼에 대한 불의를 예언자적으로 고발합니다."}
+      },
+      {
+        q:{en:"In James 3:13–18, “wisdom from above” is recognized by…", ko:"약 3:13–18에서 “위로부터 난 지혜”의 표지는?"},
+        options:{en:["Bitter envy","Gentleness and peaceable fruit","Public fame","Harsh speech"], ko:["독한 시기","온유함과 화평의 열매","대중적 명성","거친 언어"]},
+        answer:1,
+        explain:{en:"The list highlights purity, peace, mercy, and good fruits as visible markers.", ko:"성결·화평·긍휼·선한 열매라는 가시적 표지가 제시됩니다."}
+      }
+    ]
+  },
+
+  /* 1 PETER */
+  {
+    id:"1peter",
+    title_en:"1 Peter",
+    title_ko:"베드로전서",
+    desc_en:"Sojourner identity and resilient witness under social hostility; “living hope” through resurrection.",
+    desc_ko:"사회적 적대 속 나그네 정체성과 견고한 증언; 부활로 인한 “산 소망”.",
+    contexts:{
+      historical:{
+        en:`Addressed to “exiles of the Dispersion” in Asia Minor (1:1). The suffering likely includes social marginalization; the degree of legal persecution is debated.`,
+        ko:`소아시아의 “나그네/흩어진 자들”(1:1)에게 보냅니다. 고난은 사회적 배척이 중심으로 보이며, 법적 박해의 정도는 논쟁적입니다.`
+      },
+      literary:{
+        en:`A circular letter with a berakah-like opening praise (1:3). It blends identity formation (1:3–2:10), household codes (2:11–3:7), and exhortations to holy endurance.`,
+        ko:`회람 서신이며 1:3의 찬송(베라카)으로 시작합니다. 정체성 부여(1:3–2:10), 가정 규범(2:11–3:7), 거룩한 인내 권면이 결합됩니다.`
+      },
+      cultural:{
+        en:`Minority communities faced suspicion for non-participation in civic religion. The letter reframes honor: outsiders socially, yet chosen and priestly before God (2:9–10).`,
+        ko:`제국의 시민 종교에 동참하지 않는 소수 공동체는 의심과 비방을 받았습니다. 본서는 명예를 재배치합니다: 사회적으로 주변이지만 하나님 앞에서는 택함받은 제사장 백성(2:9–10).`
+      }
+    },
+    quiz:[
+      {
+        q:{en:"1 Peter’s addressees are described as…", ko:"벧전의 수신자 정체성으로 가장 핵심적인 표현은?"},
+        options:{en:["Permanent insiders","Sojourners/exiles (diaspora identity)","Temple priests only","Roman senators"], ko:["영구적 내부자","나그네/거류민(디아스포라)","성전 제사장만","로마 원로원"]},
+        answer:1,
+        explain:{en:"The letter uses diaspora language to form a distinct identity under pressure.", ko:"디아스포라 언어로 압박 속 공동체 정체성을 형성합니다."}
+      },
+      {
+        q:{en:"The “living hope” in 1 Peter 1:3 is grounded in…", ko:"벧전 1:3의 “산 소망” 근거는?"},
+        options:{en:["Political reform","Jesus’ resurrection","Wealth accumulation","Military victory"], ko:["정치 개혁","예수의 부활","부의 축적","군사 승리"]},
+        answer:1,
+        explain:{en:"Hope becomes ‘living’ through the resurrection that reconfigures the future.", ko:"부활이 미래를 재구성하여 소망을 ‘살아 있게’ 합니다."}
+      },
+      {
+        q:{en:"1 Peter 2:9–10 stacks OT titles to say the church is…", ko:"벧전 2:9–10이 구약 칭호들을 겹쳐 말하는 핵심은?"},
+        options:{en:["A new empire","God’s chosen people with priestly vocation","A secret society","A philosophical school"], ko:["새 제국","택하신 백성/제사장적 소명 공동체","비밀 결사","철학 학파"]},
+        answer:1,
+        explain:{en:"Identity is for mission: proclaiming God’s excellencies.", ko:"정체성은 ‘덕을 선포’하는 선교적 목적을 가집니다."}
+      },
+      {
+        q:{en:"In 1 Peter 3:15, the manner of giving a reason for hope is…", ko:"벧전 3:15의 변증 태도는?"},
+        options:{en:["Aggressive argument","Gentleness and reverence","Mockery","Silence"], ko:["공격적 논쟁","온유와 두려움(경외)","조롱","침묵"]},
+        answer:1,
+        explain:{en:"Witness is shaped by character—gentleness and respect.", ko:"증언은 성품으로 형성됩니다: 온유와 존중."}
+      },
+      {
+        q:{en:"A key balance in 1 Peter’s ethics is…", ko:"벧전 윤리의 핵심 균형은?"},
+        options:{en:["Escape society entirely","Diaspora distance + public good witness","Only private spirituality","Total cultural assimilation"], ko:["사회 완전 도피","나그네적 거리 + 공적 선의 증언","사적 영성만","완전 동화"]},
+        answer:1,
+        explain:{en:"The letter holds both: distinct identity and visible good conduct among outsiders.", ko:"구별된 정체성과 ‘이방인 중 선한 행실’의 가시적 증언을 함께 붙듭니다."}
+      }
+    ]
+  },
+
+  /* 2 PETER */
+  {
+    id:"2peter",
+    title_en:"2 Peter",
+    title_ko:"베드로후서",
+    desc_en:"True knowledge vs. false teachers; virtue formation; parousia delay and holy living.",
+    desc_ko:"참 지식 vs 거짓 교사; 덕목 형성; 재림 지연 논쟁과 거룩한 삶.",
+    contexts:{
+      historical:{
+        en:`Authorship and date are heavily debated; many place it late 1st–early 2nd century. The letter confronts teachers whose doctrine and morals collapse together.`,
+        ko:`저작/연대 논쟁이 큽니다(다수는 1세기 후반–2세기 초). 교리 오류와 도덕 붕괴가 결합된 거짓 교사들을 정면으로 다룹니다.`
+      },
+      literary:{
+        en:`Testament-like tone (farewell authority), virtue list (1:5–7), appeal to apostolic witness (Transfiguration) and “prophetic word” (1:19–21), plus judgment oracles (ch. 2).`,
+        ko:`유언적(고별) 어조, 덕목 연쇄(1:5–7), 변화산 목격/예언의 말씀(1:19–21), 그리고 2장의 심판 경고가 특징입니다.`
+      },
+      cultural:{
+        en:`Greco-Roman moral language (“virtue,” “knowledge”) is re-purposed toward holiness and love. Mockers exploit the delay of the Day as permission for desire-driven living (ch. 3).`,
+        ko:`헬라-로마 윤리 언어(덕/지식)를 거룩과 사랑으로 재전유합니다. “주의 날 지연”을 욕망 중심 삶의 면허로 삼는 조롱자들을 논박합니다(3장).`
+      }
+    },
+    quiz:[
+      {
+        q:{en:"In 2 Peter 1:5–7, the virtue chain climaxes in…", ko:"벧후 1:5–7 덕목 연쇄의 절정은?"},
+        options:{en:["Fame","Love (ἀγάπη)","Anger","Wealth"], ko:["명성","사랑(ἀγάπη)","분노","부"]},
+        answer:1,
+        explain:{en:"The list ends with love—signaling a distinctly Christian telos.", ko:"마지막이 사랑으로 끝나며 기독교적 목적을 드러냅니다."}
+      },
+      {
+        q:{en:"“Partakers of the divine nature” (1:4) is best read as…", ko:"“신성한 성품에 참여”(1:4)의 가장 적절한 이해는?"},
+        options:{en:["Becoming gods by essence","Sharing God’s moral life/holiness while remaining creatures","Rejecting the body","A political slogan"], ko:["본질적으로 신이 됨","피조물-창조주 구별을 유지하며 하나님의 거룩한 성품에 참여","육체 부정","정치 구호"]},
+        answer:1,
+        explain:{en:"In context it targets escape from corruption and growth in holiness, not creator-creature collapse.", ko:"문맥은 타락에서 벗어나 거룩에 참여하는 윤리적 의미가 중심입니다."}
+      },
+      {
+        q:{en:"A central issue in 2 Peter 3 is…", ko:"벧후 3장의 핵심 논쟁은?"},
+        options:{en:["Food laws","Delay of the Day / parousia skepticism","Temple building permits","Genealogies"], ko:["음식 규정","주의 날 지연/재림 회의","성전 건축 허가","족보"]},
+        answer:1,
+        explain:{en:"Mockers interpret ‘delay’ as denial; the letter reframes it as divine patience calling for repentance and holiness.", ko:"지연을 부정으로 해석하는 조롱자에 대해, 하나님의 오래 참으심과 거룩한 삶으로 재해석합니다."}
+      },
+      {
+        q:{en:"2 Peter shares its closest literary parallel in the NT with…", ko:"벧후와 가장 가까운 문학적 평행을 보이는 문서는?"},
+        options:{en:["Romans","Jude","Luke","Philippians"], ko:["로마서","유다서","누가복음","빌립보서"]},
+        answer:1,
+        explain:{en:"2 Peter 2 parallels Jude 4–16 strongly (false teachers, judgment examples, vivid metaphors).", ko:"벧후 2장은 유다서 4–16과 강한 평행을 보입니다."}
+      },
+      {
+        q:{en:"The main pastoral response to false teaching in 2 Peter is…", ko:"벧후의 거짓 가르침 대응의 핵심은?"},
+        options:{en:["Curiosity only","Growth in true knowledge + holy conduct","Silencing all teachers","Leaving the community"], ko:["호기심만","참 지식의 성장 + 거룩한 행실","모든 교사 침묵","공동체 이탈"]},
+        answer:1,
+        explain:{en:"The letter binds doctrine and ethics: true knowledge produces virtue and perseverance.", ko:"교리와 윤리를 결합합니다: 참 지식은 덕과 인내를 낳습니다."}
+      }
+    ]
+  },
+
+  /* JUDE */
+  {
+    id:"jude",
+    title_en:"Jude",
+    title_ko:"유다서",
+    desc_en:"Contend for the faith; discernment and mercy in the face of intruders.",
+    desc_ko:"믿음을 위해 싸움; 침투자들 앞에서 분별과 긍휼의 목회.",
+    contexts:{
+      historical:{
+        en:`A short urgent letter confronting “certain people” who slipped in (v.4). It draws on Jewish scriptural and traditional exempla; use of 1 Enoch is notable.`,
+        ko:`“가만히 들어온” 자들(v.4)에 대한 짧고 긴박한 편지입니다. 유대 전승의 심판 예시를 폭넓게 사용하며, 에녹서 인용이 특징적입니다.`
+      },
+      literary:{
+        en:`Rhetorically intense paraenesis with triads and vivid metaphors; ends with a major doxology (vv.24–25).`,
+        ko:`삼중 구조(트라이어드)와 강렬한 은유가 반복되는 권면문이며, 24–25절의 송영으로 절정에 이릅니다.`
+      },
+      cultural:{
+        en:`Hospitality networks could amplify teaching influence; the letter warns that welcoming a corrupt message destabilizes the community. Yet it also instructs differentiated mercy (vv.22–23).`,
+        ko:`환대(숙박/후원) 네트워크는 가르침의 확산 통로였습니다. 왜곡된 메시지의 확산을 경계하면서도(공동체 생존), 22–23절에서 상황별 긍휼을 제시합니다.`
+      }
+    },
+    quiz:[
+      {
+        q:{en:"Jude 3 urges believers to…", ko:"유 3절이 촉구하는 것은?"},
+        options:{en:["Avoid theology","Contend for the faith once delivered","Seek political office","Stop praying"], ko:["신학 회피","단번에 전해진 믿음을 위해 힘써 싸움","정치 권력 추구","기도 중단"]},
+        answer:1,
+        explain:{en:"The verb implies strenuous effort—guarding the community’s received gospel.", ko:"강한 투쟁/노력의 뉘앙스로, 공동체에 맡겨진 복음 전승을 지키라는 뜻입니다."}
+      },
+      {
+        q:{en:"A distinctive feature of Jude is its use of…", ko:"유다서의 독특한 특징 중 하나는?"},
+        options:{en:["Greek tragedy quotes","Jewish tradition exempla (including 1 Enoch)","Roman law codes","Egyptian hymns"], ko:["그리스 비극 인용","유대 전승 예시(에녹서 포함)","로마 법전","이집트 찬가"]},
+        answer:1,
+        explain:{en:"Jude leverages well-known Jewish traditional material to warn about judgment and deception.", ko:"유대 전승 자료를 활용해 심판과 기만을 경고합니다."}
+      },
+      {
+        q:{en:"Jude 4 describes intruders as turning grace into…", ko:"유 4절에서 침투자들이 은혜를 무엇으로 바꾼다고 말합니까?"},
+        options:{en:["Hospitality","License for sensuality","A math problem","A pilgrimage"], ko:["환대","방종의 구실","수학 문제","성지순례"]},
+        answer:1,
+        explain:{en:"The text binds doctrinal distortion to moral corruption.", ko:"교리 왜곡과 도덕적 타락이 결합됩니다."}
+      },
+      {
+        q:{en:"Jude 22–23 models pastoral discernment by…", ko:"유 22–23이 보여주는 목회적 분별은?"},
+        options:{en:["One response for all","Different mercy strategies depending on condition","Total condemnation","Ignoring conflict"], ko:["모든 이에게 동일 대응","상태에 따른 차등적 긍휼 전략","전면 정죄","갈등 방치"]},
+        answer:1,
+        explain:{en:"It distinguishes doubters, those in danger, and those deeply entangled—mercy with wisdom.", ko:"의심자/위험자/깊이 얽힌 자를 구분해 긍휼을 적용합니다."}
+      },
+      {
+        q:{en:"Jude ends with…", ko:"유다서의 결말 형식은?"},
+        options:{en:["A census","A doxology of God’s keeping power","A travel itinerary","A parable"], ko:["인구조사","하나님의 보존 능력을 찬양하는 송영","여정표","비유"]},
+        answer:1,
+        explain:{en:"The doxology (24–25) anchors hope: God is able to keep and present believers blameless.", ko:"24–25절 송영은 소망의 닻입니다: 하나님이 지키시고 세우십니다."}
+      }
+    ]
+  },
+
+  /* 1 JOHN */
+  {
+    id:"1john",
+    title_en:"1 John",
+    title_ko:"요한일서",
+    desc_en:"Rebuilding community after division: tests of christology, obedience, and love.",
+    desc_ko:"분열 이후 공동체 재건: 기독론·순종·사랑의 시금석.",
+    contexts:{
+      historical:{
+        en:`Often linked to a Johannine network facing internal split (2:19). The nature of “secessionists” is debated, but the letter targets denial of Jesus’ embodied coming.`,
+        ko:`요 2:19의 분리(이탈) 상황이 강하게 암시됩니다. 분리주의자 정체는 논쟁적이나, 핵심은 예수의 성육신/육체로 오심을 부정하는 흐름을 겨냥합니다.`
+      },
+      literary:{
+        en:`Not a standard letter; it reads like a circular homily with cyclical argumentation. Key “tests” recur: right confession, obedient ethics, and brotherly love.`,
+        ko:`전형적 편지보다 순환 구조의 강론에 가깝습니다. 반복되는 “시험/시금석”은 올바른 고백, 순종의 윤리, 형제 사랑입니다.`
+      },
+      cultural:{
+        en:`Truth claims threaten social bonds; the letter redefines “spirituality” as embodied love and concrete righteousness. Key terms include ἀντίχριστος (antichrist) and χρῖσμα (anointing).`,
+        ko:`진리 주장은 공동체 유대를 흔듭니다. 본서는 영성을 ‘육화된 사랑과 의’로 재정의합니다. ἀντίχριστος(적그리스도), χρῖσμα(기름부음) 등이 핵심 용어입니다.`
+      }
+    },
+    quiz:[
+      {
+        q:{en:"A central purpose statement of 1 John appears in…", ko:"요한일서의 목적 진술(목적절)은 어디에 두드러집니까?"},
+        options:{en:["1:1","3:1","5:13","2:1"], ko:["1:1","3:1","5:13","2:1"]},
+        answer:2,
+        explain:{en:"1 John 5:13 explicitly aims at assurance: knowing you have eternal life.", ko:"5:13은 영생이 있음을 ‘알게 하려’는 확신의 목적을 밝힙니다."}
+      },
+      {
+        q:{en:"In 1 John, “antichrist(s)” are…", ko:"요한일서에서 ‘적그리스도(들)’은?"},
+        options:{en:["Only one future figure","Many present deceivers denying the Son","Roman governors only","Angels"], ko:["오직 미래의 한 인물","아들을 부인하는 현재적 다수 미혹자","로마 총독만","천사들"]},
+        answer:1,
+        explain:{en:"1 John speaks of ‘many antichrists’ already present (2:18).", ko:"2:18에서 ‘많은 적그리스도’가 이미 나타났다고 말합니다."}
+      },
+      {
+        q:{en:"“God is love” occurs in…", ko:"“하나님은 사랑이시라”는 어디에 나옵니까?"},
+        options:{en:["2:1","4:8 and 4:16","3:14","5:20"], ko:["2:1","4:8과 4:16","3:14","5:20"]},
+        answer:1,
+        explain:{en:"The phrase is stated twice, framing love as the decisive marker of God’s life.", ko:"4:8과 4:16 두 번 반복되어 사랑이 결정적 표지임을 강조합니다."}
+      },
+      {
+        q:{en:"The “anointing” (χρῖσμα) in 1 John 2 is best understood as…", ko:"요일 2장의 ‘기름부음(χρῖσμα)’은 가장 적절하게 무엇을 가리킵니까?"},
+        options:{en:["A perfume recipe","God’s Spirit/abiding truth that guards against deception","A political title","A temple tax"], ko:["향유 조제법","미혹을 막는 성령/거하는 진리","정치 칭호","성전세"]},
+        answer:1,
+        explain:{en:"It signals divine teaching presence that keeps believers from relying on deceivers (2:27).", ko:"거짓 교사에 의존할 필요 없게 하는 하나님의 가르치심/거하심을 가리킵니다(2:27)." }
+      },
+      {
+        q:{en:"For 1 John, love for God is tested by…", ko:"요한일서에서 하나님 사랑의 ‘시험’은 무엇으로 드러납니까?"},
+        options:{en:["Visions only","Love for the visible brother/sister","Silence","New vocabulary"], ko:["환상 경험만","보이는 형제자매 사랑","침묵","새 어휘"]},
+        answer:1,
+        explain:{en:"4:20 argues you cannot love the unseen God while hating the seen brother/sister.", ko:"4:20은 보이는 형제를 사랑 못하면 보이지 않는 하나님을 사랑할 수 없다고 논증합니다."}
+      }
+    ]
+  },
+
+  /* 2 JOHN */
+  {
+    id:"2john",
+    title_en:"2 John",
+    title_ko:"요한이서",
+    desc_en:"Truth + love in motion, with a sharp boundary around deceptive teachers and hospitality.",
+    desc_ko:"진리+사랑의 길, 그리고 미혹자/환대 문제의 날카로운 경계.",
+    contexts:{
+      historical:{
+        en:`A short note from “the elder” to an “elect lady” (likely a house-church). It confronts itinerant teachers who deny Jesus Christ coming in the flesh.`,
+        ko:`“장로”가 “택하심을 받은 부녀”(가정교회로 이해되기도 함)에게 보낸 짧은 편지입니다. 육체로 오신 그리스도를 부인하는 순회 교사 문제를 다룹니다.`
+      },
+      literary:{
+        en:`Compact letter: greeting → exhortation to walk in love/truth → warning against deceivers → closing. Key theme: “walk” (ethical direction).`,
+        ko:`인사 → 사랑/진리 안에서 ‘행함’ 권면 → 미혹자 경고 → 결말의 압축 구조입니다. 핵심 주제는 ‘행하다/걷다’(윤리적 방향)입니다.`
+      },
+      cultural:{
+        en:`Hospitality equals endorsement in house-church networks. Refusal is protective, not merely rude—yet it must not become a blank check for modern abuse of “exclusion.”`,
+        ko:`가정교회 네트워크에서 환대는 ‘승인’의 의미를 가졌습니다. 거부는 공동체 보호 장치이지만, 현대에 무비판적 배척 논리로 남용되지 않도록 주의가 필요합니다.`
+      }
+    },
+    quiz:[
+      {
+        q:{en:"A key crisis in 2 John is…", ko:"요한이서의 핵심 위기는?"},
+        options:{en:["Food disputes","Deceivers denying Christ’s coming in the flesh","Temple sacrifices","Land distribution"], ko:["음식 논쟁","육체로 오신 그리스도를 부인하는 미혹자","성전 제사","토지 분배"]},
+        answer:1,
+        explain:{en:"2 John targets christological denial and its communal spread via hospitality.", ko:"기독론 부정과 환대를 통한 확산을 경고합니다."}
+      },
+      {
+        q:{en:"In 2 John, “walking” mainly means…", ko:"요한이서에서 ‘행하다/걷다’의 의미는?"},
+        options:{en:["Tourism","Ethical living in truth and love","Military marching","Silence"], ko:["관광","진리와 사랑 안에서의 윤리적 삶","군사 행군","침묵"]},
+        answer:1,
+        explain:{en:"The letter ties love to obedience: to walk = to live faithfully.", ko:"사랑은 계명 순종과 결합됩니다: ‘행함’은 신실한 삶입니다."}
+      },
+      {
+        q:{en:"“Do not receive them into your house” (vv.10–11) is best read as…", ko:"10–11절의 “집에 들이지 말라”는 무엇을 의미합니까?"},
+        options:{en:["General hatred of outsiders","Refusing endorsement of a deceptive teacher within house-church mission networks","Ban all guests","Stop doing ministry"], ko:["외부인 혐오","가정교회 선교 네트워크에서 미혹 교사의 ‘승인’을 거부","모든 손님 금지","사역 중단"]},
+        answer:1,
+        explain:{en:"In that world, hosting a teacher legitimized and spread their message.", ko:"당시 ‘환대’는 메시지의 정당화/확산을 의미했습니다."}
+      },
+      {
+        q:{en:"2 John holds together which pair without collapsing them?", ko:"요한이서가 무너뜨리지 않고 함께 붙드는 두 요소는?"},
+        options:{en:["Power and fame","Truth and love","Money and status","Fear and control"], ko:["권력과 명성","진리와 사랑","돈과 지위","두려움과 통제"]},
+        answer:1,
+        explain:{en:"It refuses a love-without-truth or truth-without-love reduction.", ko:"사랑 없는 진리/진리 없는 사랑의 축소를 거부합니다."}
+      },
+      {
+        q:{en:"The “elder” is best understood as…", ko:"여기서 ‘장로’는 가장 자연스럽게 무엇을 가리킵니까?"},
+        options:{en:["A Roman judge","A community leader/authoritative teacher","A temple officer","A soldier"], ko:["로마 판사","공동체 지도자/권위 있는 교사","성전 관리","군인"]},
+        answer:1,
+        explain:{en:"Likely a recognized leader within a Johannine network addressing a house-church.", ko:"요한 전승 네트워크 안의 지도자가 가정교회를 향해 쓴 것으로 이해됩니다."}
+      }
+    ]
+  },
+
+  /* 3 JOHN */
+  {
+    id:"3john",
+    title_en:"3 John",
+    title_ko:"요한삼서",
+    desc_en:"Hospitality, authority conflict, and the ethics of supporting mission-workers.",
+    desc_ko:"환대·권위 갈등·선교 동역 지원의 윤리.",
+    contexts:{
+      historical:{
+        en:`A private letter to Gaius, praising hospitality and critiquing Diotrephes who refuses the elder’s authority and blocks guests (vv.9–10).`,
+        ko:`가이오에게 보낸 개인 편지로, 환대를 칭찬하고(가이오) 장로의 권위를 거부하며 손님을 막는 디오드레베를 비판합니다(9–10절).`
+      },
+      literary:{
+        en:`Simple epistolary structure: praise → complaint → commendation of Demetrius → closing. It reveals “micro-politics” of early churches.`,
+        ko:`칭찬 → 항의 → 데메드리오 추천 → 결말의 단순 구조이며, 초기 교회의 “미시 정치”를 보여줍니다.`
+      },
+      cultural:{
+        en:`Traveling teachers depended on patronage/hospitality. Refusal meant mission blockage and social control. Key term: φιλοπρωτεύων (“loving to be first”).`,
+        ko:`순회 사역자는 환대/후원에 의존했습니다. 거부는 선교 차단과 권력 통제로 이어질 수 있습니다. 핵심 단어: φιλοπρωτεύων(“으뜸되기를 좋아하는”).`
+      }
+    },
+    quiz:[
+      {
+        q:{en:"3 John is addressed to…", ko:"요한삼서의 수신자는?"},
+        options:{en:["The emperor","Gaius","A synagogue council","Pilate"], ko:["황제","가이오","회당 의회","빌라도"]},
+        answer:1,
+        explain:{en:"The elder writes directly to Gaius to commend his faithful hospitality.", ko:"장로가 가이오에게 직접 써서 환대를 칭찬합니다."}
+      },
+      {
+        q:{en:"The key conflict involves Diotrephes who…", ko:"디오드레베 관련 핵심 갈등은 그가 무엇을 하기 때문입니까?"},
+        options:{en:["Funds scholarships","Refuses to welcome brothers and blocks others","Builds a temple","Writes a gospel"], ko:["장학금을 후원","형제들을 맞아들이지 않고 다른 이들도 막음","성전을 건축","복음서를 기록"]},
+        answer:1,
+        explain:{en:"He rejects the elder’s authority and expels those who would welcome travelers.", ko:"장로의 권위를 거부하고 환대하려는 자들을 내쫓습니다."}
+      },
+      {
+        q:{en:"φιλοπρωτεύων most nearly means…", ko:"φιλοπρωτεύων의 의미는?"},
+        options:{en:["Loving strangers","Loving to be first / craving preeminence","Loving worship music","Loving silence"], ko:["낯선 이를 사랑","으뜸되기를 좋아함/우선권 집착","찬양을 사랑","침묵을 사랑"]},
+        answer:1,
+        explain:{en:"The word critiques status-seeking leadership behavior.", ko:"지위 집착형 리더십을 비판하는 표현입니다."}
+      },
+      {
+        q:{en:"A major virtue praised in Gaius is…", ko:"가이오에게서 칭찬받는 주요 덕목은?"},
+        options:{en:["Hospitality in truth","Luxury","Secrecy","Aggression"], ko:["진리 안의 환대","사치","비밀주의","공격성"]},
+        answer:0,
+        explain:{en:"3 John links mission support with walking in the truth.", ko:"요삼은 선교 동역 지원(환대)을 ‘진리 안에서 행함’과 연결합니다."}
+      },
+      {
+        q:{en:"Demetrius is presented as…", ko:"데메드리오는 어떤 인물로 제시됩니까?"},
+        options:{en:["An enemy spy","Commended with good testimony","A Roman tax collector","A prophet of doom"], ko:["적 스파이","좋은 증거로 추천받는 인물","로마 세리","재앙 예언자"]},
+        answer:1,
+        explain:{en:"The elder commends Demetrius, likely to secure safe reception in the church network.", ko:"교회 네트워크에서 안전한 영접을 위해 데메드리오를 추천합니다."}
+      }
+    ]
+  },
+
+  /* REVELATION */
+  {
+    id:"revelation",
+    title_en:"Revelation",
+    title_ko:"요한계시록",
+    desc_en:"Apocalypse + prophecy + letter: the Lamb’s victory and new creation against imperial deception.",
+    desc_ko:"묵시+예언+서신: 제국의 기만에 맞서는 어린양의 승리와 새 창조.",
+    contexts:{
+      historical:{
+        en:`John writes from Patmos to seven churches in Asia Minor (ch. 1–3). The intensity of persecution is debated, but imperial cult pressure and economic-religious compromise are central themes.`,
+        ko:`요한은 밧모에서 소아시아 일곱 교회에 씁니다(1–3장). 박해 강도는 논쟁적이지만, 황제 숭배 압력과 경제-종교적 타협이 핵심 이슈입니다.`
+      },
+      literary:{
+        en:`A genre blend: apocalypse (visions/symbols), prophecy (ethical urgency), and letter (addressed communities). Structure is vision-cycles (seals, trumpets, bowls) toward new creation (21–22).`,
+        ko:`장르 혼합입니다: 묵시(환상/상징), 예언(윤리적 긴박성), 서신(수신 공동체). 인/나팔/대접의 순환 환상 구조를 거쳐 새 창조(21–22)로 갑니다.`
+      },
+      cultural:{
+        en:`Symbols resist empire: “Babylon” codes oppressive power; the “Lamb slain yet standing” reframes victory through faithful suffering. Worship is political theology: whom do you adore?`,
+        ko:`상징은 제국에 대한 저항 언어입니다. “바벨론”은 억압 권력의 암호이고, “죽임당했으나 서 있는 어린양”은 승리를 ‘신실한 고난’으로 재해석합니다. 예배는 정치-신학입니다: 누구를 경배하는가?`
+      }
+    },
+    quiz:[
+      {
+        q:{en:"Revelation is best described as…", ko:"계시록의 장르를 가장 잘 설명하면?"},
+        options:{en:["Only a history book","A blend of apocalypse, prophecy, and letter","A proverb collection","A philosophy treatise"], ko:["역사서만","묵시+예언+서신의 혼합","잠언집","철학 논문"]},
+        answer:1,
+        explain:{en:"Revelation explicitly frames itself as prophecy and letter, while functioning as an apocalypse.", ko:"예언(1:3)·서신(1:4) 형식을 갖추고 묵시로 작동합니다."}
+      },
+      {
+        q:{en:"The central christological image in Revelation is…", ko:"계시록의 중심 기독론적 표상은?"},
+        options:{en:["A warhorse only","The Lamb who was slain yet stands","A temple statue","A philosopher king"], ko:["전쟁 말만","죽임당했으나 서 있는 어린양","성전 조각상","철학자 왕"]},
+        answer:1,
+        explain:{en:"The Lamb (ἀρνίον) is the key to interpreting victory as sacrificial faithfulness (Rev 5).", ko:"어린양(ἀρνίον)은 희생적 신실함으로 승리를 해석하는 열쇠입니다(5장)." }
+      },
+      {
+        q:{en:"“Babylon” in Revelation most often functions as…", ko:"계시록의 ‘바벨론’은 주로 무엇을 가리키는 상징으로 작동합니까?"},
+        options:{en:["A farming technique","A symbol-code for oppressive imperial power","A minor angel","A food festival"], ko:["농사 기술","억압적 제국 권력의 상징-암호","작은 천사","음식 축제"]},
+        answer:1,
+        explain:{en:"It names a system of domination, luxury, and persecution—an anti-God city-power.", ko:"지배·사치·박해의 체계(반-하나님 도시 권력)를 지시합니다."}
+      },
+      {
+        q:{en:"A key function of the seven-church letters (Rev 2–3) is…", ko:"계 2–3장의 일곱 교회 편지의 주요 기능은?"},
+        options:{en:["To hide ethics","To diagnose communities and call for faithful witness","To teach geometry","To record taxes"], ko:["윤리 은폐","공동체 진단과 신실한 증언 촉구","기하학 교육","세금 기록"]},
+        answer:1,
+        explain:{en:"They are pastoral-prophetic evaluations aimed at repentance, endurance, and worshipful allegiance.", ko:"회개·인내·충성된 예배/충성의 방향을 촉구하는 목회적-예언적 진단입니다."}
+      },
+      {
+        q:{en:"Revelation’s end-goal is…", ko:"계시록의 종착점(목표)은?"},
+        options:{en:["Escape from creation","New creation: new heaven and new earth","Endless war","Return to Eden without transformation"], ko:["창조로부터 탈출","새 창조: 새 하늘과 새 땅","끝없는 전쟁","변화 없는 에덴 복귀"]},
+        answer:1,
+        explain:{en:"The vision culminates in renewed creation and God-with-us (Rev 21–22).", ko:"새 창조와 ‘하나님이 함께하심’(21–22장)으로 끝납니다."}
+      }
+    ]
+  }
+];
+
+/* -----------------------------
+  UI STATE
+-------------------------------- */
+let lang = "ko";
+let activeId = "locate";
+
+// Persist answers per letter
+const quizState = {}; // { [id]: { answers: { [qIndex]: chosenIndex }, checked: boolean } }
+for (const item of DATA) quizState[item.id] = { answers:{}, checked:false };
+
+const $ = (sel)=>document.querySelector(sel);
+const nav = $("#nav");
+const content = $("#content");
+const pageTitle = $("#pageTitle");
+const pageDesc = $("#pageDesc");
+const btnCheck = $("#btnCheck");
+const btnReset = $("#btnReset");
+const refs = $("#refs");
+const sidebarFoot = $("#sidebarFoot");
+
+function t(en, ko){ return (lang==="en") ? en : ko; }
+
+function renderNav(){
+  nav.innerHTML = "";
+  for(const item of DATA){
+    const b = document.createElement("button");
+    b.className = "item" + (item.id===activeId ? " active":"");
+    const title = t(item.title_en, item.title_ko);
+    const meta = (item.id==="locate")
+      ? t("Start here", "여기서 시작")
+      : t("Contexts + 5 MC", "맥락 + 5문항");
+    b.innerHTML = `<div>
+        <div>${title}</div>
+        <div class="meta">${meta}</div>
+      </div>
+      <div style="color:var(--muted);font-size:12px">›</div>`;
+    b.onclick = ()=>{ activeId=item.id; renderAll(); };
+    nav.appendChild(b);
+  }
+
+  sidebarFoot.innerHTML = t(
+    `Tip: Use <span class="kbd">EN</span>/<span class="kbd">한국어</span> toggle anytime. Answers persist per document.`,
+    `팁: <span class="kbd">EN</span>/<span class="kbd">한국어</span> 전환을 언제든 사용하세요. 답안은 문서별로 유지됩니다.`
+  );
+}
+
+function renderContent(){
+  const item = DATA.find(x=>x.id===activeId);
+  pageTitle.textContent = t(item.title_en, item.title_ko);
+  pageDesc.innerHTML = t(item.desc_en, item.desc_ko);
+
+  // Buttons
+  if(item.quiz.length===0){
+    btnCheck.style.display="none";
+    btnReset.style.display="none";
+  }else{
+    btnCheck.style.display="";
+    btnReset.style.display="";
+    btnCheck.textContent = t("Check answers", "정답 확인");
+    btnReset.textContent = t("Reset quiz", "퀴즈 리셋");
+    btnCheck.onclick = ()=>{ quizState[item.id].checked = true; renderContent(); };
+    btnReset.onclick = ()=>{
+      quizState[item.id] = {answers:{}, checked:false};
+      renderContent();
+    };
+  }
+
+  // Context cards
+  const ctx = item.contexts;
+  const ctxHTML = `
+    <div class="grid">
+      <div class="card">
+        <h3>${t("Historical context", "역사적 맥락")}</h3>
+        <p>${t(ctx.historical.en, ctx.historical.ko)}</p>
+      </div>
+      <div class="card">
+        <h3>${t("Literary context", "문학적 맥락")}</h3>
+        <p>${t(ctx.literary.en, ctx.literary.ko)}</p>
+      </div>
+      <div class="card">
+        <h3>${t("Cultural/Social context", "문화·사회적 맥락")}</h3>
+        <p>${t(ctx.cultural.en, ctx.cultural.ko)}</p>
+      </div>
+    </div>
+  `;
+
+  // Quiz
+  let quizHTML = "";
+  if(item.quiz.length>0){
+    const st = quizState[item.id];
+    let correct = 0;
+
+    quizHTML += `<details open>
+      <summary>${t("Quiz (5 multiple-choice)", "퀴즈 (5문항 객관식)")}</summary>
+      <div class="twoCol" style="margin-top:10px">
+        <div class="card">
+          <h3>${t("How to use", "사용법")}</h3>
+          <p>${t(
+            `Select answers, then click <b>Check answers</b>. You can switch letters/language without losing your picks.`,
+            `답을 선택한 뒤 <b>정답 확인</b>을 누르세요. 다른 문서/언어로 이동해도 선택은 유지됩니다.`
+          )}</p>
+        </div>
+        <div class="card">
+          <h3>${t("Instructor note", "교수자 노트")}</h3>
+          <p>${t(
+            `Use wrong answers as discussion triggers: “What assumption made that option tempting?”`,
+            `오답을 토론의 출발점으로 쓰세요: “어떤 가정이 그 선택지를 매력적으로 보이게 했나?”`
+          )}</p>
+        </div>
+      </div>
+    `;
+
+    item.quiz.forEach((qObj, i)=>{
+      const chosen = st.answers[i];
+      const isChecked = st.checked;
+      const ok = (chosen === qObj.answer);
+
+      if(isChecked && ok) correct++;
+
+      quizHTML += `<div class="quizQ">
+        <div class="qTop">
+          <div>
+            <div class="qNum">${t("Question", "문항")} ${i+1} / ${item.quiz.length}</div>
+            <div class="qText">${t(qObj.q.en, qObj.q.ko)}</div>
+          </div>
+          <div class="qNum">${item.id.toUpperCase()}</div>
+        </div>
+        <div class="opts">
+          ${
+            qObj.options.en.map((_, idx)=>{
+              const optText = t(qObj.options.en[idx], qObj.options.ko[idx]);
+              const name = `${item.id}-q${i}`;
+              const checkedAttr = (chosen===idx) ? "checked" : "";
+              return `
+                <label class="opt">
+                  <input type="radio" name="${name}" value="${idx}" ${checkedAttr}
+                    onchange="window.__pick('${item.id}',${i},${idx})" />
+                  <div>${optText}</div>
+                </label>`;
+            }).join("")
+          }
+        </div>
+        ${
+          isChecked
+            ? `<div class="feedback ${ok ? "ok":"bad"}">
+                ${ok ? "✅ " + t("Correct. ","정답입니다. ") : "❌ " + t("Not quite. ","오답입니다. ")}
+                ${t(qObj.explain.en, qObj.explain.ko)}
+              </div>`
+            : `<div class="feedback">${t("Tip: choose one option, then check answers.","팁: 보기 1개를 선택한 뒤 정답을 확인하세요.")}</div>`
+        }
+      </div>`;
+    });
+
+    const total = item.quiz.length;
+    const scoreText = st.checked
+      ? `${t("Score","점수")}: ${correct}/${total}`
+      : t("Score: (check answers first)","점수: (정답 확인 후 표시)");
+
+    quizHTML += `
+      <div class="scoreBar">
+        <div class="score">${scoreText}</div>
+        <div class="qNum">${t("Answers persist per document.","답안은 문서별로 유지됩니다.")}</div>
+      </div>
+    </details>`;
+  }
+
+  content.innerHTML = ctxHTML + quizHTML;
+
+  // References footer (global)
+  refs.innerHTML = t(
+    `References (for course grounding): Raymond E. Brown, <i>An Introduction to the New Testament</i>; D. A. Carson & Douglas J. Moo (with Leon Morris), <i>An Introduction to the New Testament</i>; P. J. Achtemeier, J. B. Green, M. M. Thompson, <i>Introducing the New Testament</i>; Daniel J. Scholz, <i>The Catholic Epistles, Hebrews, and Revelation</i>; Raymond F. Collins (Catholic Epistles studies).`,
+    `참고(강의 기반): Raymond E. Brown, <i>An Introduction to the New Testament</i>; D. A. Carson & Douglas J. Moo(Leon Morris 포함), <i>An Introduction to the New Testament</i>; P. J. Achtemeier, J. B. Green, M. M. Thompson, <i>Introducing the New Testament</i>; Daniel J. Scholz, <i>The Catholic Epistles, Hebrews, and Revelation</i>; Raymond F. Collins(공동서신 연구).`
+  );
+}
+
+window.__pick = (docId, qIndex, choice)=>{
+  quizState[docId].answers[qIndex] = choice;
+};
+
+function renderAll(){
+  renderNav();
+  renderContent();
+  // Update language button styles
+  $("#langEN").classList.toggle("primary", lang==="en");
+  $("#langKO").classList.toggle("primary", lang==="ko");
+}
+
+$("#langEN").onclick = ()=>{ lang="en"; renderAll(); };
+$("#langKO").onclick = ()=>{ lang="ko"; renderAll(); };
+
+renderAll();
+</script>
+</body>
+</html>
