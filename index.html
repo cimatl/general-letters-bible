@@ -30,9 +30,7 @@
     .topbar{
       display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
     }
-    .title{
-      display:flex; flex-direction:column; gap:4px;
-    }
+    .title{display:flex; flex-direction:column; gap:4px;}
     .title h1{margin:0; font-size:18px; letter-spacing:.2px}
     .title .sub{color:var(--muted); font-size:13px}
     .controls{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
@@ -51,14 +49,8 @@
     button:active{transform: translateY(1px)}
     .chip{cursor:default}
     main .wrap{padding-top:16px; padding-bottom:32px}
-    .grid{
-      display:grid;
-      grid-template-columns: 320px 1fr;
-      gap:16px;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns: 1fr}
-    }
+    .grid{display:grid; grid-template-columns: 320px 1fr; gap:16px;}
+    @media (max-width: 980px){ .grid{grid-template-columns: 1fr} }
     aside{
       background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
       border:1px solid var(--line);
@@ -66,27 +58,18 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .aside-head{
-      padding:14px 14px 10px;
-      border-bottom:1px solid var(--line);
-    }
+    .aside-head{padding:14px 14px 10px; border-bottom:1px solid var(--line);}
     .aside-head .kicker{color:var(--muted); font-size:12px}
     .aside-head .big{font-size:14px; margin-top:4px}
     .booklist{display:flex; flex-direction:column; padding:10px}
     .book{
-      text-align:left;
-      padding:10px 12px;
-      border-radius: 14px;
-      border:1px solid transparent;
-      background: transparent;
+      text-align:left; padding:10px 12px; border-radius: 14px;
+      border:1px solid transparent; background: transparent;
       display:flex; justify-content:space-between; gap:10px;
       color:var(--text);
     }
     .book small{color:var(--muted)}
-    .book.active{
-      border-color: rgba(125,211,252,.45);
-      background: rgba(125,211,252,.07);
-    }
+    .book.active{border-color: rgba(125,211,252,.45); background: rgba(125,211,252,.07);}
 
     section#content{
       background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
@@ -129,46 +112,27 @@
     }
     summary::-webkit-details-marker{display:none}
     .muted{color:var(--muted)}
-    .cols{
-      display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; margin-top:10px;
-    }
+    .cols{display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; margin-top:10px;}
     @media (max-width: 980px){ .cols{grid-template-columns:1fr} }
-    .card{
-      border:1px solid var(--line);
-      border-radius: 16px;
-      padding:12px;
-      background: rgba(16,24,41,.55);
-    }
+    .card{border:1px solid var(--line); border-radius: 16px; padding:12px; background: rgba(16,24,41,.55);}
     .card h4{margin:0 0 8px; font-size:14px}
     ul{margin:8px 0 0 18px; padding:0}
     li{margin:6px 0}
     .corelist{display:flex; flex-direction:column; gap:10px; margin-top:10px}
-    .core{
-      border:1px solid var(--line);
-      border-radius: 16px;
-      padding:12px;
-      background: rgba(16,24,41,.55);
-    }
+    .core{border:1px solid var(--line); border-radius: 16px; padding:12px; background: rgba(16,24,41,.55);}
     .core .ref{display:flex; justify-content:space-between; gap:10px; align-items:baseline}
     .ref strong{font-size:14px}
     .tagline{color:var(--muted); font-size:13px; margin-top:4px}
     .kw{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
-    .kw span{
-      font-size:12px;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(125,211,252,.06);
-      color: var(--text);
-    }
+    .kw span{font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid var(--line);
+      background: rgba(125,211,252,.06); color: var(--text);}
 
-    .quiz{
-      margin-top:10px;
-      border:1px solid var(--line);
-      border-radius: 16px;
-      padding:12px;
-      background: rgba(16,24,41,.55);
-    }
+    .qaGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:10px;}
+    @media (max-width: 980px){ .qaGrid{grid-template-columns:1fr} }
+    .qaBox{border:1px solid var(--line); border-radius: 16px; padding:12px; background: rgba(16,24,41,.55);}
+    .qaBox h4{margin:0 0 8px; font-size:14px}
+
+    .quiz{margin-top:10px; border:1px solid var(--line); border-radius: 16px; padding:12px; background: rgba(16,24,41,.55);}
     .qitem{padding:10px 0; border-top:1px dashed rgba(34,49,75,.7)}
     .qitem:first-child{border-top:none}
     .qtitle{font-weight:650}
@@ -183,11 +147,8 @@
     }
     label.opt:hover{border-color: rgba(125,211,252,.45)}
     .feedback{
-      margin-top:8px;
-      font-size:13px;
-      padding:10px;
-      border-radius: 14px;
-      border:1px solid var(--line);
+      margin-top:8px; font-size:13px; padding:10px;
+      border-radius: 14px; border:1px solid var(--line);
       background: rgba(15,23,42,.35);
     }
     .feedback.good{border-color: rgba(52,211,153,.45); background: rgba(52,211,153,.08)}
@@ -196,14 +157,8 @@
       display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
       margin-top:10px;
     }
-    .note{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:10px;
-    }
-    .footer{
-      margin-top:12px; color:var(--muted); font-size:12px;
-    }
+    .note{font-size:12px; color:var(--muted); margin-top:10px;}
+    .footer{margin-top:12px; color:var(--muted); font-size:12px;}
     a{color:var(--accent)}
     code.inline{background: rgba(125,211,252,.08); border:1px solid var(--line); padding:1px 6px; border-radius: 8px}
   </style>
@@ -264,6 +219,9 @@
         cult: "Cultural / Social",
         ask: "Ask-before-exegesis prompts",
         core: "Core Texts & Deep Themes",
+        coreQ: "Core-Text Questions (3 Exegetical + 3 Hermeneutical)",
+        exeQ: "Exegetical questions",
+        herQ: "Hermeneutical questions",
         quiz: "5-Question Quiz",
         submit: "Submit",
         score: "Score",
@@ -294,6 +252,9 @@
         cult: "문화·사회",
         ask: "주해 전 질문(Ask-before-exegesis)",
         core: "핵심 본문과 주제 (심층)",
+        coreQ: "핵심 본문 질문 (주해 3 + 해석학 3)",
+        exeQ: "주해 질문",
+        herQ: "해석학 질문",
         quiz: "서신별 5문항 MC 퀴즈",
         submit: "제출",
         score: "점수",
@@ -305,7 +266,6 @@
         bibliography: "학자 프레임(강의 기준점)"
       }
     },
-    // One place to keep course-level bibliography (short, for class use)
     anchors: {
       en: [
         "Raymond E. Brown, An Introduction to the New Testament (Anchor Yale).",
@@ -322,7 +282,11 @@
         "Raymond F. Collins, 공동서신 관련 서론/주석 관점."
       ]
     },
+
     books: [
+      // =======================
+      // Hebrews
+      // =======================
       {
         id:"hebrews",
         name:{en:"Hebrews", ko:"히브리서"},
@@ -432,6 +396,33 @@
             keywords:[{t:"ἀρχηγός", en:"pioneer/leader", ko:"개척자/대장"},{t:"τελειωτής", en:"perfecter", ko:"완성자"}]
           }
         ],
+        coreQuestions:{
+          ref:"Heb 12:1–2",
+          exegetical:{
+            en:[
+              "How do the participles (“laying aside…”, “looking to Jesus” / ἀφορῶντες) function syntactically in relation to “let us run” (τρέχωμεν)? What do they require of the community?",
+              "What nuance do ἀρχηγός (pioneer/leader) and τελειωτής (perfecter/completer) carry here, especially in light of Heb 2:10?",
+              "How does “despising the shame” (καταφρονήσας τῆς αἰσχύνης) interact with honor/shame dynamics in the implied social world?"
+            ],
+            ko:[
+              "‘벗어버리고…예수를 바라보자’(ἀφορῶντες)와 같은 분사들이 ‘달려가자’(τρέχωμεν)와 어떤 문법적 관계를 맺는가? 공동체에게 어떤 행동을 요구하는가?",
+              "ἀρχηγός(개척자/대장)와 τελειωτής(완성자)의 뉘앙스는 무엇인가(특히 2:10과 연결해)?",
+              "‘부끄러움을 개의치 아니하고’(καταφρονήσας τῆς αἰσχύνης)는 명예/수치 문화에서 어떤 사회적 압박을 전제하는가?"
+            ]
+          },
+          hermeneutical:{
+            en:[
+              "In your context, what are the most common “weights” and “entangling sins” (individual and structural) that hinder endurance—and what concrete practices “lay them aside”?",
+              "How can “fixing our eyes on Jesus” become an attention-discipline in a digital distraction economy without collapsing into moralism?",
+              "How might “the cloud of witnesses” be translated into mentoring/peer formation structures—while avoiding hero-worship or coercive conformity?"
+            ],
+            ko:[
+              "오늘 우리의 맥락에서 인내를 방해하는 ‘무거운 것/얽매이기 쉬운 죄’(개인+구조)는 무엇이며, 그것을 ‘벗어버리는’ 구체적 훈련은 무엇인가?",
+              "‘예수를 바라봄’(주의의 훈련)을 디지털 산만함의 시대에 어떻게 실천하되, 도덕주의로 흘러가지 않게 할 수 있는가?",
+              "‘증인들의 구름’을 멘토링/또래 형성 구조로 어떻게 번역할 것인가(영웅 숭배·강압적 동질화 없이)?"
+            ]
+          }
+        },
         quiz:[
           {q:{en:"Hebrews is best described (literarily) as…", ko:"히브리서의 문학적 성격에 가장 가까운 것은?"},
             options:{
@@ -563,6 +554,33 @@
             keywords:[{t:"Κύριος Σαβαώθ", en:"Lord of hosts", ko:"만군의 주"}]
           }
         ],
+        coreQuestions:{
+          ref:"Jas 1:22–27",
+          exegetical:{
+            en:[
+              "How does James frame the danger of self-deception (παραλογιζόμενοι) in hearing without doing? What rhetorical force does the mirror metaphor carry?",
+              "What does “the perfect law, the law of liberty” (νόμος τέλειος… τῆς ἐλευθερίας) mean in context—what kind of ‘law’ is this, and how does it liberate?",
+              "How does James define “religion” (θρησκεία) through two concrete verbs: “to care/visit” (ἐπισκέπτεσθαι) and “to keep oneself unstained” (τηρεῖν… ἄσπιλον)?"
+            ],
+            ko:[
+              "‘듣기만 하고 행하지 않음’이 왜 자기기만(παραλογιζόμενοι)인가? 거울 비유는 어떤 수사적 압력을 형성하는가?",
+              "‘온전한 율법, 자유의 율법’(νόμος τέλειος… τῆς ἐλευθερίας)은 문맥에서 어떤 종류의 ‘율법’이며, 어떤 방식으로 ‘자유’로 작동하는가?",
+              "야고보는 ‘경건’(θρησκεία)을 두 동사—‘돌보다/방문하다’(ἐπισκέπτεσθαι)와 ‘자기를 지키다’(τηρεῖν… ἄσπιλον)—로 어떻게 정의하는가?"
+            ]
+          },
+          hermeneutical:{
+            en:[
+              "If your class/church is strong in information but weak in practice, what assessments or assignments could measure “doing” (care/justice) rather than mere recall?",
+              "How would you teach James alongside Paul so students don’t turn this passage into “earning salvation”? What language helps keep grace-priority and grace-fruit together?",
+              "Who are the ‘orphans/widows’ equivalents in your local ecology (campus, city, diaspora)? Design one concrete practice that embodies care without spiritual bypassing."
+            ],
+            ko:[
+              "정보(지식)는 강하지만 실천은 약한 공동체라면, ‘행함’을 측정·형성하는 평가/과제를 어떻게 설계할 수 있는가(돌봄/정의 중심)?",
+              "이 본문이 ‘행위로 구원 획득’으로 오해되지 않도록 바울과 함께 어떻게 가르칠 것인가(은혜의 우선 + 은혜의 열매)?",
+              "우리 주변의 ‘고아/과부’에 해당하는 취약자는 누구인가(캠퍼스/도시/디아스포라)? 영적 회피 없이 돌봄을 구현할 1개 실천을 설계하라."
+            ]
+          }
+        },
         quiz:[
           {q:{en:"James 1:27 defines ‘pure religion’ primarily as…", ko:"약 1:27의 ‘정결한 경건’은 무엇을 중심으로 정의되는가?"},
             options:{en:["Ritual precision","Care for vulnerable + moral integrity","Temple pilgrimage","Debate mastery"],
@@ -688,6 +706,33 @@
             keywords:[{t:"κοινωνεῖν", en:"to share/participate", ko:"참여하다"}]
           }
         ],
+        coreQuestions:{
+          ref:"1 Pet 2:9–12",
+          exegetical:{
+            en:[
+              "What OT echoes shape the identity titles (chosen race, royal priesthood, holy nation)? How do they re-map the audience’s self-understanding?",
+              "How does the purpose clause (“so that you may proclaim…”, ἵνα… ἐξαγγείλητε) define identity as mission rather than privilege?",
+              "What does “day of visitation” (ἡμέρᾳ ἐπισκοπῆς) imply in v.12—judgment, salvation, or divine attention—and how does that affect the call to public conduct?"
+            ],
+            ko:[
+              "‘택하신 족속/왕 같은 제사장/거룩한 나라’ 정체성 칭호는 어떤 구약 메아리를 갖는가? 이것이 수신자 정체성을 어떻게 재지도화(remap)하는가?",
+              "목적절(ἵνα… ἐξαγγείλητε)은 정체성을 ‘특권’이 아니라 ‘선교’로 어떻게 규정하는가?",
+              "12절 ‘권고하시는 날’(ἡμέρᾳ ἐπισκοπῆς)은 심판/구원/방문 중 무엇을 함축하는가? 이것이 ‘이방인 가운데 선한 행실’ 요청에 어떤 의미를 더하는가?"
+            ]
+          },
+          hermeneutical:{
+            en:[
+              "On a secular campus, what practices embody “royal priesthood” as service and witness (not culture-war posture)? Name 2–3 concrete habits.",
+              "How can “good deeds” be public enough to be seen (v.12) without becoming performative virtue or self-branding?",
+              "How do we use “exile/sojourner” language without sliding into withdrawal, nationalism, or contempt for the surrounding culture?"
+            ],
+            ko:[
+              "세속 캠퍼스에서 ‘왕 같은 제사장’을 문화전쟁이 아니라 섬김/증언으로 구현하는 실천은 무엇인가(2–3개 습관 제안)?",
+              "‘선한 행실’이 ‘보일 정도로 공적’이되(12절) 퍼포먼스/브랜딩으로 변질되지 않게 하는 원칙은?",
+              "‘나그네/거류민’ 언어를 철수주의·민족주의·타문화 경멸 없이 어떻게 사용할 것인가?"
+            ]
+          }
+        },
         quiz:[
           {q:{en:"1 Peter addresses believers chiefly as…", ko:"베드로전서가 수신자들을 주로 무엇으로 부르는가?"},
             options:{en:["Temple officials","Sojourners/exiles","Philosophy students","Roman senators"],
@@ -813,6 +858,33 @@
             keywords:[{t:"αὔξανετε", en:"grow", ko:"자라라"}]
           }
         ],
+        coreQuestions:{
+          ref:"2 Pet 1:3–11",
+          exegetical:{
+            en:[
+              "How does the text portray God’s prior agency (“has granted…”, δεδωρημένης) as the ground for ethics—before the virtue list begins?",
+              "What does “partakers of the divine nature” (θείας κοινωνοὶ φύσεως) mean in context (escaping corruption + virtue growth), and what does it not mean?",
+              "How does the virtue chain (1:5–7) progress rhetorically—what is the function of “add/supply” (ἐπιχορηγήσατε), and why does love cap the sequence?"
+            ],
+            ko:[
+              "‘주신 바 되었으니’(δεδωρημένης)와 같은 하나님의 선행 은혜/행위가 왜 덕목 사슬의 전제가 되는가?",
+              "‘신성한 성품에 참여’(θείας κοινωνοὶ φύσεως)는 문맥에서 무엇을 뜻하며(부패 회피+덕 성장), 무엇을 뜻하지 않는가?",
+              "덕목 사슬(1:5–7)은 어떤 수사적 진행을 이루는가? ‘더하라/공급하라’(ἐπιχορηγήσατε)의 기능과 ‘사랑’이 절정인 이유는?"
+            ]
+          },
+          hermeneutical:{
+            en:[
+              "Design a 6–8 week formation pathway mapping each virtue to one practice (community, body, attention, money, speech). What would that look like for students?",
+              "In an AI-heavy learning environment, how do we distinguish “knowledge” as formation (truth that reshapes life) from information accumulation? What safeguards prevent vanity?",
+              "What are today’s “freedom” slogans that drift into license—and how should communities respond without paranoia?"
+            ],
+            ko:[
+              "각 덕목을 1개 실천(공동체/몸/주의/돈/언어 등)과 연결해 6–8주 형성 로드맵을 설계해 보라. 학생들에게는 어떻게 적용할 것인가?",
+              "AI 기반 학습 환경에서 ‘지식’(형성으로서의 진리)과 정보 축적을 어떻게 구분할 것인가? 허영/자기과시를 막는 안전장치는?",
+              "오늘 ‘자유’ 담론이 방종으로 흐르는 대표적 구호는 무엇이며, 공동체는 편집증 없이 어떻게 대응할 것인가?"
+            ]
+          }
+        },
         quiz:[
           {q:{en:"2 Peter’s primary crisis is…", ko:"베드로후서의 1차 위기는?"},
             options:{en:["External empire taxation","Internal false teachers and moral corruption","Temple rebuilding project","Food laws debate only"],
@@ -930,6 +1002,33 @@
             keywords:[{t:"φυλάξαι", en:"to keep/guard", ko:"지키다"}]
           }
         ],
+        coreQuestions:{
+          ref:"Jude 3–4",
+          exegetical:{
+            en:[
+              "What rhetorical shift occurs in v.3 (“I found it necessary…”)—from writing about salvation to urging contention—and what does that imply about the crisis?",
+              "What does “once-for-all delivered” (ἅπαξ παραδοθείσῃ) signal about the ‘faith’ as a deposit (content + allegiance), and how is it communal (“to the saints”)?",
+              "How does Jude define the ethical distortion: “turning grace into license” (μετατιθέντες… εἰς ἀσέλγειαν)? What does ἀσέλγεια imply?"
+            ],
+            ko:[
+              "3절에서 왜 ‘구원’에 대한 글에서 ‘싸움’(권면)으로 목적이 전환되는가? 이것이 위기의 성격을 어떻게 드러내는가?",
+              "‘단번에 전하신 믿음’(ἅπαξ παραδοθείσῃ)은 믿음을 어떤 공동체적 ‘전승(내용+충성)’으로 규정하는가(‘성도에게’)?",
+              "4절 ‘은혜를 방종으로 바꿈’(μετατιθέντες… εἰς ἀσέλγειαν)은 어떤 윤리적 왜곡을 뜻하는가? ἀσέλγεια의 의미 영역은?"
+            ]
+          },
+          hermeneutical:{
+            en:[
+              "How do we “contend” for the faith without becoming combative or dehumanizing—what practices keep truth and mercy together?",
+              "What are modern forms of “platforming intruders” (networks, conferences, social media), and what boundary practices prevent endorsement of harm?",
+              "How can a community distinguish between doubt that needs gentle mercy and deception that needs rescue/firm boundaries (cf. vv.22–23)?"
+            ],
+            ko:[
+              "‘믿음을 위해 싸움’(contend)을 공격성과 비인간화 없이 수행하려면, 진리와 긍휼을 함께 지키는 실천은 무엇인가?",
+              "오늘 ‘침투자/왜곡’을 플랫폼화하는 현대적 통로(네트워크/행사/소셜미디어)는 무엇이며, 해를 승인하지 않기 위한 경계 실천은?",
+              "의심(가르침 필요)과 미혹/위험(구출·강한 경계 필요)을 어떻게 구분할 것인가(22–23절의 차등 대응 기준)?"
+            ]
+          }
+        },
         quiz:[
           {q:{en:"Jude’s immediate problem is…", ko:"유다서의 직접적 문제는?"},
             options:{en:["External famine only","Intruders who distort grace into license","Lack of Greek education","Temple tax disputes"],
@@ -1055,6 +1154,33 @@
             keywords:[{t:"ὁ θεὸς ἀγάπη ἐστίν", en:"God is love", ko:"하나님은 사랑이시라"}]
           }
         ],
+        coreQuestions:{
+          ref:"1 Jn 4:7–12",
+          exegetical:{
+            en:[
+              "How do the imperatives (“let us love”) rest on indicative claims (“love is from God… God loved us first”)? Trace the logic chain.",
+              "What does ἱλασμός (atoning sacrifice) in v.10 contribute to the definition of love—what kind of love is being claimed?",
+              "How does the letter move from unseen God to visible love (v.12): what does it mean that God “abides” (μένει) and love is “perfected” (τετελείωται) among us?"
+            ],
+            ko:[
+              "‘서로 사랑하자’(명령)는 ‘사랑은 하나님께 속했다/하나님이 먼저 사랑하셨다’(진술) 위에 어떻게 세워지는가? 논리 사슬을 추적하라.",
+              "10절 ἱλασμός(화목/속죄 제물)은 ‘사랑’의 정의에 무엇을 더하는가? 여기서 말하는 사랑은 어떤 성격의 사랑인가?",
+              "12절에서 보이지 않는 하나님이 보이는 사랑으로 연결되는 방식은 무엇인가? ‘거하다’(μένει)와 ‘온전케 되다’(τετελείωται)는 어떤 공동체적 의미를 갖는가?"
+            ]
+          },
+          hermeneutical:{
+            en:[
+              "What practices keep community love cruciform (atonement-shaped) rather than sentimental or tribal—especially during conflict?",
+              "How can a community confess sin truthfully (1:8–10) while sustaining assurance (5:13) so love doesn’t collapse into either denial or despair?",
+              "In a pluralistic campus, how do we speak “God is love” without reducing it to generic moralism—what makes it distinctively Jesus-shaped?"
+            ],
+            ko:[
+              "공동체 사랑이 감상/부족주의가 아니라 ‘속죄(십자가) 형상’으로 유지되도록 하는 실천은 무엇인가(갈등 상황 포함)?",
+              "죄의 자백(1:8–10)과 확신(5:13)을 함께 붙들어 사랑이 부정이나 절망으로 무너지지 않게 하려면?",
+              "다원적 캠퍼스에서 ‘하나님은 사랑’이 도덕 일반론으로 환원되지 않도록, 예수 형상으로 말하는 방식은?"
+            ]
+          }
+        },
         quiz:[
           {q:{en:"1 John’s conflict is mainly about…", ko:"요한일서의 갈등 핵심은?"},
             options:{en:["Food laws","Internal schism and distorted Christology","Temple rebuilding","Roman taxation"],
@@ -1108,7 +1234,7 @@
               "How can boundaries be kept without becoming loveless?"
             ]},
             ko:{points:[
-              "‘택하신 부녀’는 가정교회 네트워크로 이해 가능.",
+              "‘택하신 부녀’는 가정교회 platform/네트워크로 이해 가능.",
               "v.7 성육신 부인 교사 경계.",
               "환대는 승인/플랫폼 제공이므로 10–11절 경계가 등장."
             ], asks:[
@@ -1168,6 +1294,33 @@
             keywords:[{t:"πλάνος", en:"deceiver", ko:"미혹자"}]
           }
         ],
+        coreQuestions:{
+          ref:"2 Jn 7–11",
+          exegetical:{
+            en:[
+              "What does the present participle “coming in the flesh” (ἐρχόμενον ἐν σαρκί) emphasize about confession—ongoing reality, not a one-time slogan?",
+              "How do “going ahead” (προάγων) and “abiding” (μένειν) function as boundary markers between faithful teaching and distortion (vv.9–10)?",
+              "What is the social-ethical logic of “sharing in wicked works” (κοινωνεῖ… ἔργοις) in v.11—how does hospitality equal endorsement in this network?"
+            ],
+            ko:[
+              "‘육체로 오시는’(ἐρχόμενον ἐν σαρκί, 현재분사)은 고백의 무엇을 강조하는가(지속적 현실 vs 구호)?",
+              "‘앞서 나아가다’(προάγων)와 ‘거하다’(μένειν)는 왜곡/신실함을 가르는 경계 표지로 어떻게 기능하는가(9–10절)?",
+              "11절 ‘악한 일에 참여함’(κοινωνεῖ… ἔργοις)은 어떤 사회-윤리적 논리인가? 환대가 왜 ‘승인/동조’가 되는가?"
+            ]
+          },
+          hermeneutical:{
+            en:[
+              "What is your community’s equivalent of “welcoming into the house” (platforming, inviting, endorsing)? Draft a simple policy for discernment + care.",
+              "How do we distinguish serious doctrinal deception from ordinary disagreement—what criteria should guide boundary decisions?",
+              "How can leaders communicate boundaries in a way that remains truthful and loving (vv.4–6) rather than fear-driven tribalism?"
+            ],
+            ko:[
+              "오늘 ‘집에 들임’의 등가물(초청/공유/플랫폼 제공/추천)은 무엇인가? 분별+돌봄을 위한 간단한 원칙(정책)을 작성하라.",
+              "일반적 의견 차이와 심각한 미혹/왜곡을 어떻게 구분할 것인가? 경계 판단의 критерία(기준)는?",
+              "경계를 세우되(7–11절) 4–6절의 진리/사랑을 유지하는 커뮤니케이션 방식(문장/톤/절차)은?"
+            ]
+          }
+        },
         quiz:[
           {q:{en:"2 John’s key tension is balancing…", ko:"요한이서의 핵심 긴장은 무엇의 균형인가?"},
             options:{en:["Law and food","Truth/love and communal boundaries","Empire and taxes","Sacrifice and incense"],
@@ -1281,6 +1434,33 @@
             keywords:[{t:"φιλοπρωτεύων", en:"loving to be first", ko:"으뜸되기 좋아하는"}]
           }
         ],
+        coreQuestions:{
+          ref:"3 Jn 5–8",
+          exegetical:{
+            en:[
+              "What does “you act faithfully” (πιστὸν ποιεῖς) mean in context—faithfulness to whom/what: people, truth, or the mission network?",
+              "How does “for the sake of the Name” (ὑπὲρ τοῦ ὀνόματος) function theologically—what kind of motivation is assumed?",
+              "What does it mean to become “co-workers with the truth” (συνεργοὶ τῇ ἀληθείᾳ)? How does hospitality create partnership rather than mere charity?"
+            ],
+            ko:[
+              "‘네가 신실하게 행한다’(πιστὸν ποιεῖς)는 문맥에서 무엇을 뜻하는가—사람/진리/선교 네트워크에 대한 신실함 중 무엇인가?",
+              "‘이름을 위하여’(ὑπὲρ τοῦ ὀνόματος)는 어떤 신학적 동기를 전제하는가?",
+              "‘진리를 위하여 함께 일하는 자’(συνεργοὶ τῇ ἀληθείᾳ)란 무엇인가? 환대가 자선이 아니라 동역이 되는 논리는?"
+            ]
+          },
+          hermeneutical:{
+            en:[
+              "What is a responsible modern analogue to supporting traveling workers (vv.5–8)—missions, visiting lecturers, creators, ministry interns—and what accountability protects both host and guest?",
+              "How can organizations prevent “Diotrephes dynamics” (gatekeeping/control) while still practicing discernment?",
+              "Design a simple hospitality culture for a student group (budget, safety, consent, follow-up) that makes goodness visible and transferable."
+            ],
+            ko:[
+              "5–8절의 ‘순회 사역자 환대’의 현대적 적용은 무엇인가(선교/초청 강사/인턴/사역자 등)? 양쪽을 보호하는 책임성과 점검 장치는?",
+              "조직이 ‘디오드레베 역학’(통제/게이트키핑)을 예방하면서도 분별을 유지하려면?",
+              "학생 공동체를 위한 ‘환대 문화’(예산/안전/동의/후속 돌봄) 간단 설계를 작성하라."
+            ]
+          }
+        },
         quiz:[
           {q:{en:"3 John is primarily about…", ko:"요한삼서의 핵심 주제는?"},
             options:{en:["Cosmic visions","Hospitality, mission partnership, and leadership conflict","Food purity laws","Roman armies"],
@@ -1406,6 +1586,33 @@
             keywords:[{t:"καινὸς οὐρανὸς καὶ καινὴ γῆ", en:"new heaven and new earth", ko:"새 하늘과 새 땅"}]
           }
         ],
+        coreQuestions:{
+          ref:"Rev 5:5–6",
+          exegetical:{
+            en:[
+              "How does the narrative technique (hearing “Lion” → seeing “Lamb”) function as an interpretive key for the whole book’s vision of victory?",
+              "What is the theological force of the Lamb “standing as slaughtered” (ἀρνίον… ἐσφαγμένον)? How can ‘power’ and ‘wounds’ coexist in this symbol?",
+              "Which OT echoes carry the most weight here (Lion of Judah, Root of David, horns/eyes)? How do they reframe messianic expectation?"
+            ],
+            ko:[
+              "‘사자를 들었으나 어린양을 봄’(청각→시각) 서술 기법은 계시록 전체의 ‘승리’ 이해를 어떻게 재정의하는 해석 열쇠가 되는가?",
+              "‘죽임당한 것 같으나 서 있는 어린양’(ἀρνίον… ἐσφαγμένον)은 어떤 신학적 긴장을 담는가(권력+상처의 공존)?",
+              "여기서 가장 중요한 구약 메아리(유다의 사자, 다윗의 뿌리, 뿔/눈)는 무엇이며, 메시아 기대를 어떻게 재구성하는가?"
+            ]
+          },
+          hermeneutical:{
+            en:[
+              "How does Lamb-shaped victory critique both violent activism and empire-friendly assimilation in your context?",
+              "If worship is political formation, what liturgical/prayer practices could form nonviolent resistance and faithful allegiance among students?",
+              "Map one modern “beastly” system (economic coercion, propaganda, idolatries) using a non-harm filter—avoiding conspiracy thinking while naming real pressures."
+            ],
+            ko:[
+              "어린양 형상의 승리는 오늘 우리의 맥락에서 ‘폭력적 해결주의’와 ‘제국 동화’ 모두를 어떻게 비판하는가?",
+              "예배가 정치적 형성이라면, 학생들에게 비폭력 저항과 신실한 충성을 형성하는 예배/기도 실천은 무엇인가?",
+              "현대의 ‘짐승적 시스템’(경제 강제, 선전, 우상화)을 1개 선택해 비해(Non-harm) 필터로 지도화하라(음모론은 피하되 실제 압박은 명명)."
+            ]
+          }
+        },
         quiz:[
           {q:{en:"Revelation is best classified as…", ko:"계시록의 장르는?"},
             options:{en:["Only apocalypse","Apocalypse + prophecy + letter","Only wisdom","Only gospel"],
@@ -1435,7 +1642,7 @@
             options:{en:["Private escape","Public healing of nations in a renewed city","Endless violence","No future"],
                      ko:["개인 탈출","새 도시에서의 열방 치유(공적 회복)","끝없는 폭력","미래 없음"]},
             answer:1,
-            explain:{en:"The New Jerusalem vision culminates in healing and God’s presence (22:2–5).", ko:"새 예루살렘은 치유와 임재로 완결됩니다(22:2–5)." }
+            explain:{en:"The New Jerusalem vision culminates in healing and God’s presence (Rev 22:2–5).", ko:"새 예루살렘은 치유와 임재로 절정에 이릅니다(22:2–5)." }
           }
         ]
       }
@@ -1443,279 +1650,341 @@
   };
 
   // =========================
-  // App state + helpers
+  // State
   // =========================
-  let LANG = "en";
-  let currentBookId = APP.books[0].id;
+  const STORAGE_KEY = "general_epistles_app_v3";
+  const state = {
+    lang: "en",
+    activeId: APP.books[0].id,
+    answers: {},   // { [bookId]: number[] } selected option index per question
+    submitted: {}  // { [bookId]: boolean }
+  };
 
-  const qs = (sel, el=document) => el.querySelector(sel);
-  const qsa = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+  function safeLoad(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      const parsed = JSON.parse(raw);
+      if(parsed && typeof parsed === "object"){
+        if(parsed.lang === "en" || parsed.lang === "ko") state.lang = parsed.lang;
+        if(typeof parsed.activeId === "string") state.activeId = parsed.activeId;
+        if(parsed.answers && typeof parsed.answers === "object") state.answers = parsed.answers;
+        if(parsed.submitted && typeof parsed.submitted === "object") state.submitted = parsed.submitted;
+      }
+    }catch(e){}
+  }
+  function safeSave(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        lang: state.lang,
+        activeId: state.activeId,
+        answers: state.answers,
+        submitted: state.submitted
+      }));
+    }catch(e){}
+  }
+
+  const el = {
+    appTitle: document.getElementById("appTitle"),
+    appSub: document.getElementById("appSub"),
+    asideKicker: document.getElementById("asideKicker"),
+    asideBig: document.getElementById("asideBig"),
+    bookList: document.getElementById("bookList"),
+    content: document.getElementById("content"),
+    langBtn: document.getElementById("langBtn"),
+    resetBtn: document.getElementById("resetBtn"),
+    printBtn: document.getElementById("printBtn"),
+  };
 
   function t(key){
-    return APP.ui[LANG][key];
+    return APP.ui[state.lang][key];
+  }
+  function bookById(id){
+    return APP.books.find(b=>b.id===id) || APP.books[0];
   }
 
-  function escapeHtml(str){
-    return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+  function renderShellText(){
+    el.appTitle.textContent = t("title");
+    el.appSub.textContent = t("sub");
+    el.asideKicker.textContent = t("nav");
+    el.asideBig.textContent = t("books");
+    el.langBtn.textContent = state.lang === "en" ? "KO" : "EN";
   }
 
-  function saveProgress(bookId, answers){
-    const key = "ge_progress_v1";
-    const all = JSON.parse(localStorage.getItem(key) || "{}");
-    all[bookId] = answers;
-    localStorage.setItem(key, JSON.stringify(all));
-  }
-
-  function loadProgress(bookId){
-    const key = "ge_progress_v1";
-    const all = JSON.parse(localStorage.getItem(key) || "{}");
-    return all[bookId] || {};
-  }
-
-  function resetAll(){
-    localStorage.removeItem("ge_progress_v1");
-    renderBook(currentBookId);
-  }
-
-  // =========================
-  // Render sidebar + content
-  // =========================
-  function renderSidebar(){
-    qs("#appTitle").textContent = t("title");
-    qs("#appSub").textContent = t("sub");
-    qs("#asideKicker").textContent = t("nav");
-    qs("#asideBig").textContent = t("books");
-    qs("#resetBtn").textContent = t("reset");
-    qs("#printBtn").textContent = t("print");
-
-    const list = qs("#bookList");
-    list.innerHTML = "";
+  function renderBookList(){
+    el.bookList.innerHTML = "";
     APP.books.forEach(b=>{
       const btn = document.createElement("button");
-      btn.className = "book" + (b.id===currentBookId ? " active":"");
       btn.type = "button";
+      btn.className = "book" + (b.id===state.activeId ? " active" : "");
       btn.innerHTML = `
-        <div>
-          <div><strong>${escapeHtml(b.name[LANG])}</strong></div>
-          <small>${escapeHtml(b.tagline[LANG])}</small>
-        </div>
+        <span>${escapeHTML(b.name[state.lang])}<br><small>${escapeHTML(b.tagline[state.lang])}</small></span>
         <small>›</small>
       `;
       btn.addEventListener("click", ()=>{
-        currentBookId = b.id;
-        renderSidebar();
-        renderBook(currentBookId);
+        state.activeId = b.id;
+        safeSave();
+        render();
       });
-      list.appendChild(btn);
+      el.bookList.appendChild(btn);
     });
   }
 
-  function renderCourseFrame(){
-    const bullets = APP.ui[LANG].locateBullets;
-    const anchors = APP.anchors[LANG];
+  function ensureAnswerArray(book){
+    if(!state.answers[book.id] || !Array.isArray(state.answers[book.id])){
+      state.answers[book.id] = new Array(book.quiz.length).fill(null);
+    }else if(state.answers[book.id].length !== book.quiz.length){
+      state.answers[book.id] = new Array(book.quiz.length).fill(null);
+    }
+  }
 
-    return `
+  function renderContent(){
+    const book = bookById(state.activeId);
+    ensureAnswerArray(book);
+    const ui = APP.ui[state.lang];
+
+    const ctx = book.contexts;
+    const coreQs = book.coreQuestions;
+
+    el.content.innerHTML = `
+      <div class="hero">
+        <h2>${escapeHTML(book.name[state.lang])}</h2>
+        <div class="meta">${escapeHTML(book.tagline[state.lang])}</div>
+        <div class="pillrow">
+          <span class="pill">EN/KO</span>
+          <span class="pill">${escapeHTML(ui.pre)}</span>
+          <span class="pill">${escapeHTML(ui.core)}</span>
+          <span class="pill">${escapeHTML(ui.coreQ)}</span>
+          <span class="pill">${escapeHTML(ui.quiz)}</span>
+        </div>
+      </div>
+
+      <details>
+        <summary>${escapeHTML(ui.courseFrame)} <span class="muted">▾</span></summary>
+        <div class="muted" style="margin-top:8px;">${escapeHTML(ui.frameMeta)}</div>
+        <ul>
+          ${ui.locateBullets.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}
+        </ul>
+        <div class="footer"><strong>${escapeHTML(ui.bibliography)}:</strong>
+          <ul>${APP.anchors[state.lang].map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul>
+        </div>
+      </details>
+
       <details open>
-        <summary>${escapeHtml(t("courseFrame"))}<span class="muted">${escapeHtml(t("frameMeta"))}</span></summary>
-        <div class="card" style="margin-top:10px">
-          <ul>
-            ${bullets.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}
-          </ul>
-          <div class="footer"><strong>${escapeHtml(t("bibliography"))}:</strong>
-            <ul>${anchors.map(a=>`<li>${escapeHtml(a)}</li>`).join("")}</ul>
+        <summary>${escapeHTML(ui.pre)} <span class="muted">▾</span></summary>
+        <div class="muted" style="margin-top:8px;">${escapeHTML(ui.preHelp)}</div>
+        <div class="cols">
+          ${renderContextCard(ui.hist, ctx.historical[state.lang])}
+          ${renderContextCard(ui.lit, ctx.literary[state.lang])}
+          ${renderContextCard(ui.cult, ctx.cultural[state.lang])}
+        </div>
+      </details>
+
+      <details open>
+        <summary>${escapeHTML(ui.core)} <span class="muted">▾</span></summary>
+        <div class="corelist">
+          ${book.coreTexts.map(ct=>renderCoreText(ct)).join("")}
+        </div>
+      </details>
+
+      <details open>
+        <summary>${escapeHTML(ui.coreQ)} <span class="muted">▾</span></summary>
+        <div class="core" style="margin-top:10px;">
+          <div class="ref">
+            <strong>${escapeHTML(coreQs.ref)}</strong>
+            <span class="muted">${escapeHTML(book.name[state.lang])}</span>
+          </div>
+          <div class="tagline">${escapeHTML(state.lang==="en"
+            ? "Use these for close-reading (exegesis) and faithful translation into life (hermeneutics)."
+            : "주해(본문 밀착 읽기) + 해석학(삶으로의 번역) 질문입니다.")}</div>
+        </div>
+
+        <div class="qaGrid">
+          <div class="qaBox">
+            <h4>${escapeHTML(ui.exeQ)}</h4>
+            <ol style="margin:8px 0 0 18px;">
+              ${coreQs.exegetical[state.lang].map(q=>`<li>${escapeHTML(q)}</li>`).join("")}
+            </ol>
+          </div>
+          <div class="qaBox">
+            <h4>${escapeHTML(ui.herQ)}</h4>
+            <ol style="margin:8px 0 0 18px;">
+              ${coreQs.hermeneutical[state.lang].map(q=>`<li>${escapeHTML(q)}</li>`).join("")}
+            </ol>
           </div>
         </div>
       </details>
+
+      <details open>
+        <summary>${escapeHTML(ui.quiz)} <span class="muted">▾</span></summary>
+        ${renderQuiz(book)}
+      </details>
+
+      <div class="note">${escapeHTML(ui.note)}</div>
+    `;
+
+    // Wire quiz listeners
+    wireQuiz(book);
+  }
+
+  function renderContextCard(title, payload){
+    const points = payload.points || [];
+    const asks = payload.asks || [];
+    return `
+      <div class="card">
+        <h4>${escapeHTML(title)}</h4>
+        <div class="muted">${escapeHTML(t("ask"))}</div>
+        <ul>
+          ${points.map(p=>`<li>${escapeHTML(p)}</li>`).join("")}
+        </ul>
+        <div class="muted" style="margin-top:8px;">${escapeHTML(t("ask"))}</div>
+        <ul>
+          ${asks.map(a=>`<li>${escapeHTML(a)}</li>`).join("")}
+        </ul>
+      </div>
     `;
   }
 
-  function renderContexts(book){
-    const C = book.contexts;
-
-    function panel(titleKey, obj){
-      const points = obj.points.map(p=>`<li>${escapeHtml(p)}</li>`).join("");
-      const asks = obj.asks.map(p=>`<li>${escapeHtml(p)}</li>`).join("");
-      return `
-        <div class="card">
-          <h4>${escapeHtml(t(titleKey))}</h4>
-          <div class="muted">${escapeHtml(t("preHelp"))}</div>
-          <ul>${points}</ul>
-          <div class="muted" style="margin-top:10px"><strong>${escapeHtml(t("ask"))}</strong></div>
-          <ul>${asks}</ul>
-        </div>
-      `;
-    }
-
+  function renderCoreText(ct){
+    const kws = (ct.keywords || []).map(k=>{
+      const label = state.lang==="en" ? `${k.t} — ${k.en}` : `${k.t} — ${k.ko}`;
+      return `<span>${escapeHTML(label)}</span>`;
+    }).join("");
     return `
-      <details open>
-        <summary>${escapeHtml(t("pre"))}<span class="muted">${escapeHtml(t("preHelp"))}</span></summary>
-        <div class="cols">
-          ${panel("hist", C.historical[LANG])}
-          ${panel("lit", C.literary[LANG])}
-          ${panel("cult", C.cultural[LANG])}
+      <div class="core">
+        <div class="ref">
+          <strong>${escapeHTML(ct.ref)}</strong>
+          <span class="muted">${escapeHTML(ct.theme[state.lang])}</span>
         </div>
-      </details>
-    `;
-  }
-
-  function renderCoreTexts(book){
-    return `
-      <details open>
-        <summary>${escapeHtml(t("core"))}<span class="muted">${escapeHtml(book.tagline[LANG])}</span></summary>
-        <div class="corelist">
-          ${book.coreTexts.map(ct=>{
-            const kws = (ct.keywords || []).map(k => `<span><code class="inline">${escapeHtml(k.t)}</code> — ${escapeHtml(k[LANG])}</span>`).join("");
-            return `
-              <div class="core">
-                <div class="ref">
-                  <strong>${escapeHtml(ct.ref)}</strong>
-                  <span class="muted">${escapeHtml(ct.theme[LANG])}</span>
-                </div>
-                <div class="tagline">${escapeHtml(ct.note[LANG])}</div>
-                ${kws ? `<div class="kw">${kws}</div>` : ""}
-              </div>
-            `;
-          }).join("")}
-        </div>
-        <div class="note">${escapeHtml(t("note"))}</div>
-      </details>
+        <div class="tagline">${escapeHTML(ct.note[state.lang])}</div>
+        <div class="kw">${kws}</div>
+      </div>
     `;
   }
 
   function renderQuiz(book){
-    const saved = loadProgress(book.id);
+    const ui = APP.ui[state.lang];
+    const ans = state.answers[book.id] || [];
+    const submitted = !!state.submitted[book.id];
+
+    const itemsHTML = book.quiz.map((qq, i)=>{
+      const opts = qq.options[state.lang].map((opt, j)=>{
+        const checked = ans[i] === j ? "checked" : "";
+        return `
+          <label class="opt">
+            <input type="radio" name="q_${book.id}_${i}" value="${j}" ${checked} />
+            <div>${escapeHTML(opt)}</div>
+          </label>
+        `;
+      }).join("");
+
+      let fb = "";
+      if(submitted){
+        const isCorrect = ans[i] === qq.answer;
+        const cls = isCorrect ? "good" : "bad";
+        const head = isCorrect ? ui.correct : ui.incorrect;
+        fb = `
+          <div class="feedback ${cls}">
+            <strong>${escapeHTML(head)}</strong> · ${escapeHTML(qq.explain[state.lang])}
+          </div>
+        `;
+      }
+
+      return `
+        <div class="qitem">
+          <div class="qtitle">${i+1}. ${escapeHTML(qq.q[state.lang])}</div>
+          <div class="opts">${opts}</div>
+          ${fb}
+        </div>
+      `;
+    }).join("");
+
+    const score = submitted ? computeScore(book) : null;
 
     return `
-      <details open>
-        <summary>${escapeHtml(t("quiz"))}<span class="muted">${escapeHtml(book.name[LANG])}</span></summary>
-        <div class="quiz" data-book="${escapeHtml(book.id)}">
-          <div class="muted" style="margin-bottom:8px">${escapeHtml(t("quiz"))} · ${escapeHtml(book.name[LANG])}</div>
-          ${book.quiz.map((q, idx)=>{
-            const picked = (saved[idx] ?? "");
-            return `
-              <div class="qitem" data-qindex="${idx}">
-                <div class="qtitle">${idx+1}. ${escapeHtml(q.q[LANG])}</div>
-                <div class="opts">
-                  ${q.options[LANG].map((opt, oi)=>{
-                    const id = `${book.id}_q${idx}_o${oi}`;
-                    const checked = String(picked) === String(oi) ? "checked" : "";
-                    return `
-                      <label class="opt" for="${id}">
-                        <input type="radio" name="${book.id}_q${idx}" id="${id}" value="${oi}" ${checked} />
-                        <div>${escapeHtml(opt)}</div>
-                      </label>
-                    `;
-                  }).join("")}
-                </div>
-                <div class="feedback" hidden></div>
-              </div>
-            `;
-          }).join("")}
-
-          <div class="scoreline">
-            <button type="button" class="submitBtn">${escapeHtml(t("submit"))}</button>
-            <div class="chip"><span class="muted">${escapeHtml(t("score"))}:</span> <span class="scoreVal">—</span></div>
-          </div>
-          <div class="note">${escapeHtml(LANG==="en"
-            ? "Tip: answer first, then submit; explanations show why."
-            : "팁: 먼저 모두 답한 뒤 제출하세요. 해설이 왜 그런지 보여줍니다.")}</div>
-        </div>
-      </details>
-    `;
-  }
-
-  function renderBook(bookId){
-    const book = APP.books.find(b=>b.id===bookId);
-    const el = qs("#content");
-
-    el.innerHTML = `
-      <div class="hero">
-        <h2>${escapeHtml(book.name[LANG])}</h2>
-        <div class="meta">${escapeHtml(book.tagline[LANG])}</div>
-        <div class="pillrow">
-          <span class="pill">Hebrews → Revelation</span>
-          <span class="pill">${escapeHtml(LANG==="en" ? "College-level" : "대학 수업용")}</span>
-          <span class="pill">${escapeHtml(LANG==="en" ? "Pre-exegesis → Core texts → Quiz" : "사전 맥락 → 핵심 본문 → 퀴즈")}</span>
+      <div class="quiz">
+        ${itemsHTML}
+        <div class="scoreline">
+          <button type="button" id="submitBtn">${escapeHTML(ui.submit)}</button>
+          <div class="muted">${submitted ? `${escapeHTML(ui.score)}: <strong>${score}/${book.quiz.length}</strong>` : ""}</div>
         </div>
       </div>
-
-      ${renderCourseFrame()}
-      ${renderContexts(book)}
-      ${renderCoreTexts(book)}
-      ${renderQuiz(book)}
     `;
-
-    wireQuiz(book);
   }
 
-  // =========================
-  // Quiz logic
-  // =========================
+  function computeScore(book){
+    const ans = state.answers[book.id] || [];
+    let score = 0;
+    book.quiz.forEach((q, i)=>{
+      if(ans[i] === q.answer) score++;
+    });
+    return score;
+  }
+
   function wireQuiz(book){
-    const quizEl = qs(`.quiz[data-book="${book.id}"]`);
-    if(!quizEl) return;
-
-    // Save choices as student clicks
-    qsa('input[type="radio"]', quizEl).forEach(inp=>{
-      inp.addEventListener("change", (e)=>{
-        const qIndex = Number(e.target.name.split("_q")[1]);
-        const ans = loadProgress(book.id);
-        ans[qIndex] = Number(e.target.value);
-        saveProgress(book.id, ans);
+    // Radio changes
+    const radios = el.content.querySelectorAll(`input[type="radio"][name^="q_${book.id}_"]`);
+    radios.forEach(r=>{
+      r.addEventListener("change", (e)=>{
+        const name = e.target.name; // q_bookId_i
+        const idx = Number(name.split("_").pop());
+        const val = Number(e.target.value);
+        ensureAnswerArray(book);
+        state.answers[book.id][idx] = val;
+        // If already submitted, keep submitted and re-render to update feedback live
+        safeSave();
+        render(); // simple & reliable
       });
     });
 
-    qs(".submitBtn", quizEl).addEventListener("click", ()=>{
-      const ans = loadProgress(book.id);
-      let correct = 0;
-
-      book.quiz.forEach((q, idx)=>{
-        const container = qs(`.qitem[data-qindex="${idx}"]`, quizEl);
-        const fb = qs(".feedback", container);
-        const picked = (ans[idx] ?? null);
-
-        // clear
-        fb.hidden = false;
-        fb.classList.remove("good","bad");
-
-        if(picked === null || picked === undefined || picked === ""){
-          fb.classList.add("bad");
-          fb.innerHTML = `<strong>${escapeHtml(t("incorrect"))}:</strong> ${escapeHtml(LANG==="en" ? "No answer selected." : "선택한 답이 없습니다.")}`;
-          return;
-        }
-
-        if(Number(picked) === q.answer){
-          correct += 1;
-          fb.classList.add("good");
-          fb.innerHTML = `<strong>${escapeHtml(t("correct"))}:</strong> ${escapeHtml(q.explain[LANG])}`;
-        }else{
-          fb.classList.add("bad");
-          const right = q.options[LANG][q.answer];
-          fb.innerHTML = `<strong>${escapeHtml(t("incorrect"))}:</strong> ${escapeHtml(q.explain[LANG])}<br/>
-                          <span class="muted">${escapeHtml(LANG==="en" ? "Correct answer: " : "정답: ")}</span>${escapeHtml(right)}`;
-        }
+    const submitBtn = el.content.querySelector("#submitBtn");
+    if(submitBtn){
+      submitBtn.addEventListener("click", ()=>{
+        state.submitted[book.id] = true;
+        safeSave();
+        render();
       });
+    }
+  }
 
-      qs(".scoreVal", quizEl).textContent = `${correct} / ${book.quiz.length}`;
-    });
+  function resetAll(){
+    state.answers = {};
+    state.submitted = {};
+    safeSave();
+    render();
+  }
+
+  function escapeHTML(str){
+    return String(str)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
+
+  function render(){
+    renderShellText();
+    renderBookList();
+    renderContent();
   }
 
   // =========================
-  // Controls
-  // =========================
-  qs("#langBtn").addEventListener("click", ()=>{
-    LANG = (LANG === "en") ? "ko" : "en";
-    qs("#langBtn").textContent = (LANG === "en") ? "KO" : "EN";
-    renderSidebar();
-    renderBook(currentBookId);
-  });
-
-  qs("#resetBtn").addEventListener("click", resetAll);
-  qs("#printBtn").addEventListener("click", ()=>window.print());
-
   // Init
-  renderSidebar();
-  renderBook(currentBookId);
+  // =========================
+  safeLoad();
+  // Validate activeId
+  if(!APP.books.some(b=>b.id===state.activeId)) state.activeId = APP.books[0].id;
+
+  el.langBtn.addEventListener("click", ()=>{
+    state.lang = state.lang === "en" ? "ko" : "en";
+    safeSave();
+    render();
+  });
+  el.resetBtn.addEventListener("click", resetAll);
+  el.printBtn.addEventListener("click", ()=>window.print());
+
+  render();
 </script>
 </body>
 </html>
